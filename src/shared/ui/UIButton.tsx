@@ -51,7 +51,7 @@ export const UIButton = ({
   const variantClassMap = {
     primary: "",
     default:
-      "bg-transparent text-inherit dark:text-white dark:hover:bg-transparent border-none! shadow-none!",
+      "",
     dashed: "bg-transparent hover:!bg-transparent shadow-none",
     link: "!text-inherit hover:!text-primary dark:!text-white hover:!border-b-inherit rounded-none duration-300 !h-auto !p-0",
     text: "p-0! bg-inherit!",

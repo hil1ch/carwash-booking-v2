@@ -3,7 +3,8 @@ import { createBrowserRouter, Outlet } from "react-router";
 import { MainLayout } from "./layout/MainLayout";
 import { ROUTER_PATHS } from "../shared/constants";
 
-import { HomePage } from "../pages/HomePage";
+import { HomePage } from "../pages/home";
+import { CarWashesPage } from "../pages/carwashes";
 
 export const routes = createBrowserRouter([
   {
@@ -17,10 +18,10 @@ export const routes = createBrowserRouter([
         path: ROUTER_PATHS.HOME,
         element: <HomePage />,
       },
-      //   {
-      //     path: APP_PATHS.route.catalog,
-      //     element: <CatalogPage />,
-      //   },
+      {
+        path: ROUTER_PATHS.CARWASHES,
+        element: <CarWashesPage />,
+      },
       //   {
       //     path: APP_PATHS.route.subCatalog,
       //     element: <SubCatalogPage />,

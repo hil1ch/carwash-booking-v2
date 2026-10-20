@@ -13,7 +13,7 @@ export const Header = () => {
           <img src={headerImage} alt="Логотип" width={36} />
           <span className="text-xl font-semibold">WashNow</span>
         </Link>
-        <nav className="flex items-center">
+        <nav className="flex items-center gap-2">
           {MENU_ITEMS.map((item) => (
             <UIButton
               key={item.name}
