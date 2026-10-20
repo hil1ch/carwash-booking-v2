@@ -45,3 +45,9 @@ body {
 p {
   margin: 0;
 }
+
+.ant-checkbox-wrapper,
+.ant-checkbox-wrapper span,
+.ant-checkbox-wrapper label {
+  font-family: "Montserrat", sans-serif;
+}
