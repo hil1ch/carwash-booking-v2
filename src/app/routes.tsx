@@ -5,8 +5,17 @@ import { ROUTER_PATHS } from "../shared/constants";
 
 import { HomePage } from "../pages/home";
 import { CarWashesPage } from "../pages/carwashes";
+import { SignInPage } from "../pages/sign-in";
 
 export const routes = createBrowserRouter([
+  {
+    path: ROUTER_PATHS.HOME,
+    element: <HomePage />,
+  },
+  {
+    path: ROUTER_PATHS.SIGN_IN,
+    element: <SignInPage />,
+  },
   {
     element: (
       <MainLayout>
@@ -15,17 +24,9 @@ export const routes = createBrowserRouter([
     ),
     children: [
       {
-        path: ROUTER_PATHS.HOME,
-        element: <HomePage />,
-      },
-      {
         path: ROUTER_PATHS.CARWASHES,
         element: <CarWashesPage />,
       },
-      //   {
-      //     path: APP_PATHS.route.subCatalog,
-      //     element: <SubCatalogPage />,
-      //   },
       //   {
       //     path: `${APP_PATHS.route.catalog}/:categoryId`,
       //     element: <SubCatalogPage />,

@@ -9,7 +9,7 @@ export const HomePage = () => {
         <img
           alt="Автомобиль на автомойке"
           src={homePageCarImage}
-          className="block h-[clamp(28rem,48vw,44rem)] w-full object-cover"
+          className="block h-[clamp(40rem,60vw,56rem)] w-full object-cover"
         />
         <div className="absolute inset-0 flex items-center bg-black/60">
           <div className="mx-auto w-full max-w-6xl text-left text-white flex flex-col gap-8">

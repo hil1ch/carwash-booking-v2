@@ -2,24 +2,25 @@ import { InputNumber } from "antd";
 import type { InputNumberProps } from "antd";
 import classNames from "classnames";
 
-interface InputQuantityTemplateProps extends InputNumberProps {
+interface UIInputNumberProps extends InputNumberProps {
   className?: string;
 }
 
 const sharedProps = {
   mode: "spinner" as const,
-  style: { width: 120 },
+  style: { width: "100%" },
 };
 
 const mainClass = "";
 
-const InputNumberQuantityTemplate = ({
+export const UIInputNumber = ({
   value,
   onChange,
   className: secondaryClass,
   controls,
+  size = "large",
   ...rest
-}: InputQuantityTemplateProps) => {
+}: UIInputNumberProps) => {
   return (
     <InputNumber
       className={classNames(mainClass, secondaryClass)}
@@ -27,11 +28,9 @@ const InputNumberQuantityTemplate = ({
       {...rest}
       controls={controls}
       variant="filled"
-      size="small"
+      size={size}
       value={value}
       onChange={onChange}
     />
   );
 };
-
-export default InputNumberQuantityTemplate;
