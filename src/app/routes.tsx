@@ -6,6 +6,7 @@ import { ROUTER_PATHS } from "../shared/constants";
 import { HomePage } from "../pages/home";
 import { CarWashesPage } from "../pages/carwashes";
 import { SignInPage } from "../pages/sign-in";
+import { ServicesPage } from "../pages/services";
 
 export const routes = createBrowserRouter([
   {
@@ -27,10 +28,10 @@ export const routes = createBrowserRouter([
         path: ROUTER_PATHS.CARWASHES,
         element: <CarWashesPage />,
       },
-      //   {
-      //     path: `${APP_PATHS.route.catalog}/:categoryId`,
-      //     element: <SubCatalogPage />,
-      //   },
+      {
+        path: `${ROUTER_PATHS.CARWASHES}/:carwashId`,
+        element: <ServicesPage />,
+      },
       //   {
       //     path: `${APP_PATHS.route.catalog}/:categoryId/:itemId`,
       //     element: <SubCatalogItemsPage />,
