@@ -7,6 +7,7 @@ import { HomePage } from "../pages/home";
 import { CarWashesPage } from "../pages/carwashes";
 import { SignInPage } from "../pages/sign-in";
 import { CarwashPage } from "../pages/carwash";
+import { DatePage } from "../pages/date";
 
 export const routes = createBrowserRouter([
   {
@@ -32,10 +33,10 @@ export const routes = createBrowserRouter([
         path: `${ROUTER_PATHS.CARWASHES}/:carwashId`,
         element: <CarwashPage />,
       },
-      //   {
-      //     path: `${APP_PATHS.route.catalog}/:categoryId/:itemId`,
-      //     element: <SubCatalogItemsPage />,
-      //   },
+      {
+        path: `${ROUTER_PATHS.CARWASHES}/:carwashId/:serviceId`,
+        element: <DatePage />,
+      },
       //   {
       //     path: `${APP_PATHS.route.catalog}/:categoryId/:itemId/:productId`,
       //     element: <SingleProductPage />,

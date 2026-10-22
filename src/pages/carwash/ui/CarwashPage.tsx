@@ -9,7 +9,7 @@ import { ChevronLeft } from "lucide-react";
 export const CarwashPage = () => {
   return (
     <div className="max-w-6xl w-full mx-auto">
-      <div className="mt-5 flex justify-start">
+      <div className="flex justify-start">
         <UIButton
           isLink
           href=""
