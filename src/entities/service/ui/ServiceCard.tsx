@@ -2,7 +2,7 @@ import { UIButton } from "../../../shared/ui/UIButton";
 
 export const ServiceCard = () => {
   return (
-    <div className="border border-blue-100 p-2 rounded-xl bg-white w-full">
+    <li className="border border-blue-100 p-2 rounded-xl bg-white w-full">
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <h4 className="text-lg font-semibold">Мойка кузова + салон</h4>
@@ -16,8 +16,10 @@ export const ServiceCard = () => {
         </div>
       </div>
       <div className="mt-4 flex justify-end">
-        <UIButton>Выбрать</UIButton>
+        <UIButton isLink href="">
+          Выбрать
+        </UIButton>
       </div>
-    </div>
+    </li>
   );
 };

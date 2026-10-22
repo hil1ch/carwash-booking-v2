@@ -53,12 +53,12 @@ export const UIButton = ({
     default:
       "",
     dashed: "bg-transparent hover:!bg-transparent shadow-none",
-    link: "!text-inherit hover:!text-primary dark:!text-white hover:!border-b-inherit rounded-none duration-300 !h-auto !p-0",
+    link: "",
     text: "p-0! bg-inherit!",
   };
 
   const content = (
-    <div className="flex gap-2">
+    <div className="flex gap-1">
       {iconStart && <span className="flex items-center">{iconStart}</span>}
       {children || name}
       {iconEnd && <span className="flex items-center">{iconEnd}</span>}

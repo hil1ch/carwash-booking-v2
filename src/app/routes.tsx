@@ -6,7 +6,7 @@ import { ROUTER_PATHS } from "../shared/constants";
 import { HomePage } from "../pages/home";
 import { CarWashesPage } from "../pages/carwashes";
 import { SignInPage } from "../pages/sign-in";
-import { ServicesPage } from "../pages/services";
+import { CarwashPage } from "../pages/carwash";
 
 export const routes = createBrowserRouter([
   {
@@ -30,7 +30,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: `${ROUTER_PATHS.CARWASHES}/:carwashId`,
-        element: <ServicesPage />,
+        element: <CarwashPage />,
       },
       //   {
       //     path: `${APP_PATHS.route.catalog}/:categoryId/:itemId`,

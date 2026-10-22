@@ -39,7 +39,9 @@ export const CarWash = () => {
             <span className="text-sm">
               от <strong>600 Р</strong>
             </span>
-            <UIButton>Выбрать</UIButton>
+            <UIButton isLink href="">
+              Выбрать
+            </UIButton>
           </div>
         </div>
       </div>
