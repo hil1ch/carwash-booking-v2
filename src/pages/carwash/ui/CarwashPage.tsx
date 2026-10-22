@@ -15,7 +15,7 @@ export const CarwashPage = () => {
           href=""
           className="p-0!"
           type="link"
-          iconStart={<ChevronLeft size={20} className="self-end" />}
+          iconStart={<ChevronLeft size={20} />}
         >
           Назад к списку
         </UIButton>

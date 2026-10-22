@@ -46,7 +46,7 @@ export const UIButton = ({
 
   ...restProps
 }: ButtonTemplateProps) => {
-  const mainClassName = "font-bold !flex";
+  const mainClassName = "font-bold !flex !font-[family-name:var(--sans)]";
 
   const variantClassMap = {
     primary: "",
