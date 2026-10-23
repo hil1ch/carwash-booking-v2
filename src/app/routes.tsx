@@ -9,6 +9,7 @@ import { SignInPage } from "../pages/sign-in";
 import { CarwashPage } from "../pages/carwash";
 import { DatePage } from "../pages/date";
 import { PaymentPage } from "../pages/payment";
+import { SuccessPage } from "../pages/success";
 
 export const routes = createBrowserRouter([
   {
@@ -42,10 +43,10 @@ export const routes = createBrowserRouter([
         path: `${ROUTER_PATHS.CARWASHES}/:carwashId/:serviceId/${ROUTER_PATHS.PAYMENT}`,
         element: <PaymentPage />,
       },
-      //   {
-      //     path: APP_PATHS.route.about,
-      //     element: <AboutPage />,
-      //   },
+      {
+        path: `${ROUTER_PATHS.CARWASHES}/:carwashId/:serviceId/${ROUTER_PATHS.PAYMENT}/${ROUTER_PATHS.SUCCESS}`,
+        element: <SuccessPage />,
+      },
       //   {
       //     path: APP_PATHS.route.alloysSearch,
       //     element: <AlloysSearch />,
