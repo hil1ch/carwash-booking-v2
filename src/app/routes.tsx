@@ -10,6 +10,9 @@ import { CarwashPage } from "../pages/carwash";
 import { DatePage } from "../pages/date";
 import { PaymentPage } from "../pages/payment";
 import { SuccessPage } from "../pages/success";
+import { AccountLayout } from "./layout/AccountLayout";
+import { UserOrdersPage } from "../pages/user-orders";
+import { FavoritePage } from "../pages/favorite";
 
 export const routes = createBrowserRouter([
   {
@@ -47,10 +50,6 @@ export const routes = createBrowserRouter([
         path: `${ROUTER_PATHS.CARWASHES}/:carwashId/:serviceId/${ROUTER_PATHS.PAYMENT}/${ROUTER_PATHS.SUCCESS}`,
         element: <SuccessPage />,
       },
-      //   {
-      //     path: APP_PATHS.route.alloysSearch,
-      //     element: <AlloysSearch />,
-      //   },
       //   {
       //     path: APP_PATHS.route.article,
       //     element: <ArticlesPage />,
@@ -97,6 +96,24 @@ export const routes = createBrowserRouter([
       //   },
     ],
   },
+  {
+    element: (
+      <AccountLayout>
+        <Outlet />
+      </AccountLayout>
+    ),
+    children: [
+      {
+        path: ROUTER_PATHS.USER,
+        element: <UserOrdersPage />,
+      },
+      {
+        path: ROUTER_PATHS.FAVORITE,
+        element: <FavoritePage />,
+      },
+    ],
+  },
+
   //   {
   //     path: `${APP_PATHS.route.home}*`,
   //     element: <NotFoundPage />,

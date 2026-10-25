@@ -7,7 +7,7 @@ import { MENU_ITEMS } from "../config/menu-items";
 
 export const Header = () => {
   return (
-    <header className="w-full border-b border-gray-200 sticky top-0 z-100 bg-white">
+    <header className="w-full h-[var(--header-height)] border-b border-gray-200 sticky top-0 z-100 bg-white">
       <div className="max-w-6xl py-4 mx-auto flex items-center justify-between">
         <Link to={ROUTER_PATHS.HOME} className="flex items-center gap-3">
           <img src={headerImage} alt="Логотип" width={36} />

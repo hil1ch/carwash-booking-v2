@@ -5,4 +5,6 @@ export const ROUTER_PATHS = {
   FAVORITE: "/favorite",
   PAYMENT: "payment",
   SUCCESS: "success",
+  USER: "/orders",
+  USER_REVIEWS: "/reviews",
 } as const;

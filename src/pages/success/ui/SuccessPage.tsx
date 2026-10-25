@@ -12,7 +12,7 @@ export const SuccessPage = () => {
           src={successLottie}
           loop
           autoplay
-          className="w-80 h-auto mx-auto"
+          className="w-72 h-auto mx-auto"
         />
         <h2 className="font-semibold text-2xl">Бронирование подтверждено!</h2>
         <p className="text-gray-500 text-sm">

@@ -2,6 +2,7 @@
 import carwashImg from "../assets/carwash-example.webp";
 import { Heart, Star, MapPinHouse } from "lucide-react";
 import { UIButton } from "../../../shared/ui/UIButton";
+import { UITag } from "../../../shared/ui/UITag";
 
 export const CarWash = () => {
   return (
@@ -10,11 +11,14 @@ export const CarWash = () => {
         <img
           alt="Изображение автомойки"
           src={carwashImg}
-          className="rounded-lg max-w-56 h-auto"
+          className="rounded-lg max-w-50 h-auto"
         />
         <div className="flex flex-col gap-2 items-start w-full">
           <div className="flex justify-between items-center w-full">
             <h4 className="text-lg font-semibold">Aqua Car</h4>
+            <UITag variant="outlined" color="green">
+              Предстоящая
+            </UITag>
             <UIButton type="text" shape="round">
               <Heart fill="red" color="red" />
             </UIButton>
@@ -30,15 +34,16 @@ export const CarWash = () => {
               <span>ул. Молодежная 25</span>
             </div>
           </div>
-          <ul className="flex items-center gap-2 text-xs text-blue-500 font-semibold">
+          {/* <ul className="flex items-center gap-2 text-xs text-blue-500 font-semibold">
             <li className="px-2 py-1 bg-blue-50 rounded-xl">Ручная</li>
             <li className="px-2 py-1 bg-blue-50 rounded-xl">Автоматическая</li>
             <li className="px-2 py-1 bg-blue-50 rounded-xl">Химчистка</li>
-          </ul>
-          <div className="flex items-center justify-between w-full">
+          </ul> */}
+          <div className="flex items-end justify-between w-full">
             <span className="text-sm">
               от <strong>600 Р</strong>
             </span>
+            {/* <span className="text-sm ml-auto ">12.10.2026</span> */}
             <UIButton isLink href="">
               Выбрать
             </UIButton>

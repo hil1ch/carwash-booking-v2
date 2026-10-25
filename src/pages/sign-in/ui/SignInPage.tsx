@@ -1,10 +1,10 @@
 import loginImg from "../assets/washnow_login_car.webp";
 
-import { Tabs } from "antd";
 import type { TabsProps } from "antd";
 
 import { SignInForm } from "../../../features/sign-in";
 import { SignUpOwnerForm } from "../../../features/sign-up";
+import { UITab } from "../../../shared/ui/UITab";
 
 import styles from "./SignInPage.module.css";
 
@@ -52,7 +52,7 @@ export const SignInPage = () => {
 
       <div className="flex min-w-0 flex-1 flex-col items-center justify-center p-6 max-w-xl mx-auto">
         <div className="w-full max-w-md">
-          <Tabs
+          <UITab
             size="large"
             className={styles.authTabs}
             centered
