@@ -8,8 +8,8 @@ import { ChevronLeft } from "lucide-react";
 
 export const CarwashPage = () => {
   return (
-    <div className="max-w-6xl w-full mx-auto">
-      <div className="flex justify-start">
+    <div className="max-w-6xl w-full h-[calc(100dvh-var(--header-height)-2.5rem)] mx-auto flex flex-col overflow-hidden">
+      <div className="flex justify-start shrink-0">
         <UIButton
           isLink
           href=""
@@ -20,8 +20,8 @@ export const CarwashPage = () => {
           Назад к списку
         </UIButton>
       </div>
-      <div className="grid grid-cols-2 gap-10 my-5 text-left">
-        <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 grid-rows-[minmax(0,1fr)] gap-10 my-5 flex-1 min-h-0 text-left">
+        <div className="flex flex-col gap-4 min-h-0">
           <Carousel
             effect="fade"
             // ref={carouselRef}
@@ -104,7 +104,7 @@ export const CarwashPage = () => {
             спектр услуг - от базовой мойки до комплексной химчистки и полировки
           </p>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 min-h-0">
           <h2 className="text-2xl font-bold">AquaCar</h2>
           <div className="text-sm text-gray-400 font-medium flex flex-col gap-2">
             <Link
@@ -127,9 +127,9 @@ export const CarwashPage = () => {
               <li className="px-2 py-1 bg-blue-50 rounded-xl">Химчистка</li>
             </ul>
           </div>
-          <div className="mt-10">
-            <h5 className="font-semibold mb-5">Выберите услугу</h5>
-            <ul className="flex flex-col gap-2">
+          <div className="mt-10 flex flex-1 min-h-0 flex-col">
+            <h5 className="font-semibold mb-5 shrink-0">Выберите услугу</h5>
+            <ul className="flex flex-1 min-h-0 flex-col gap-2 overflow-y-auto">
               <ServiceCard />
               <ServiceCard />
               <ServiceCard />

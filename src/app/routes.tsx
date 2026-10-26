@@ -13,6 +13,7 @@ import { SuccessPage } from "../pages/success";
 import { AccountLayout } from "./layout/AccountLayout";
 import { UserOrdersPage } from "../pages/user-orders";
 import { FavoritePage } from "../pages/favorite";
+import { ReviewsPage } from "../pages/reviews";
 
 export const routes = createBrowserRouter([
   {
@@ -110,6 +111,10 @@ export const routes = createBrowserRouter([
       {
         path: ROUTER_PATHS.FAVORITE,
         element: <FavoritePage />,
+      },
+      {
+        path: ROUTER_PATHS.USER_REVIEWS,
+        element: <ReviewsPage />,
       },
     ],
   },

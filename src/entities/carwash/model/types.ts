@@ -1,4 +1,5 @@
 import type { Service } from "../../service";
+import type { CarwashReview } from "../../review";
 
 export type Carwash = {
   id: number;
@@ -9,9 +10,4 @@ export type Carwash = {
   services: Service[];
   location: string;
   reviews: CarwashReview[];
-};
-
-type CarwashReview = {
-  rating: number;
-  text: string;
 };
