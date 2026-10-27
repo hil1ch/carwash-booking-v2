@@ -7,4 +7,10 @@ export const ROUTER_PATHS = {
   SUCCESS: "success",
   USER: "/orders",
   USER_REVIEWS: "/reviews",
+
+  DASHBOARD: "/owner/dashboard", 
+  BOOKINGS: "/owner/bookings",
+  SCHEDULE: "/owner/schedule",
+  OWNER_REVIEWS: "/owner/reviews",
+  OWNER_CARWASH: "/owner/carwashes",
 } as const;

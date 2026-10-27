@@ -58,7 +58,7 @@ export const UIButton = ({
   };
 
   const content = (
-    <div className="flex gap-1">
+    <div className="flex gap-2">
       {iconStart && <span className="flex items-center">{iconStart}</span>}
       {children || name}
       {iconEnd && <span className="flex items-center">{iconEnd}</span>}

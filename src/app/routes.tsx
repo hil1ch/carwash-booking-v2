@@ -14,6 +14,8 @@ import { AccountLayout } from "./layout/AccountLayout";
 import { UserOrdersPage } from "../pages/user-orders";
 import { FavoritePage } from "../pages/favorite";
 import { ReviewsPage } from "../pages/reviews";
+import { OwnerLayout } from "./layout/OwnerLayout";
+import { DashboardPage } from "../pages/dashboard";
 
 export const routes = createBrowserRouter([
   {
@@ -97,6 +99,28 @@ export const routes = createBrowserRouter([
       //   },
     ],
   },
+  {
+    element: (
+      <OwnerLayout>
+        <Outlet />
+      </OwnerLayout>
+    ),
+    children: [
+      {
+        path: ROUTER_PATHS.DASHBOARD,
+        element: <DashboardPage />,
+      },
+      // {
+      //   path: ROUTER_PATHS.FAVORITE,
+      //   element: <FavoritePage />,
+      // },
+      // {
+      //   path: ROUTER_PATHS.USER_REVIEWS,
+      //   element: <ReviewsPage />,
+      // },
+    ],
+  },
+
   {
     element: (
       <AccountLayout>

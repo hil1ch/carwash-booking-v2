@@ -8,7 +8,7 @@ export const CarWashesPage = () => {
     <div className="max-w-6xl w-full mx-auto">
       <div className="flex items-center gap-4 my-5 w-full justify-end">
         <Search />
-        <Sort />
+        <Sort placeholder="Сортировка" />
       </div>
       <div className="grid grid-cols-[1fr_3fr] items-start gap-6">
         <Filters />

@@ -1,0 +1,16 @@
+.dashboard-bookings-table .ant-table {
+  background: transparent;
+}
+
+.dashboard-bookings-table .ant-table-thead > tr > th {
+  padding: 12px 10px;
+  color: gray;
+  font-weight: 500;
+  background: transparent;
+  border-bottom: 1px solid #e8eef7;
+}
+
+.dashboard-bookings-table .ant-table-tbody > tr > td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #e8eef7;
+}
