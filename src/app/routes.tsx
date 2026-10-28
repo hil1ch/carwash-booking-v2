@@ -16,6 +16,8 @@ import { FavoritePage } from "../pages/favorite";
 import { ReviewsPage } from "../pages/reviews";
 import { OwnerLayout } from "./layout/OwnerLayout";
 import { DashboardPage } from "../pages/dashboard";
+import { OwnerCarwashesPage } from "../pages/owner-carwashes";
+import { NotFoundPage } from "../pages/not-found";
 
 export const routes = createBrowserRouter([
   {
@@ -110,10 +112,10 @@ export const routes = createBrowserRouter([
         path: ROUTER_PATHS.DASHBOARD,
         element: <DashboardPage />,
       },
-      // {
-      //   path: ROUTER_PATHS.FAVORITE,
-      //   element: <FavoritePage />,
-      // },
+      {
+        path: ROUTER_PATHS.OWNER_CARWASH,
+        element: <OwnerCarwashesPage />,
+      },
       // {
       //   path: ROUTER_PATHS.USER_REVIEWS,
       //   element: <ReviewsPage />,
@@ -143,8 +145,8 @@ export const routes = createBrowserRouter([
     ],
   },
 
-  //   {
-  //     path: `${APP_PATHS.route.home}*`,
-  //     element: <NotFoundPage />,
-  //   },
+  {
+    path: `${ROUTER_PATHS.HOME}*`,
+    element: <NotFoundPage />,
+  },
 ]);

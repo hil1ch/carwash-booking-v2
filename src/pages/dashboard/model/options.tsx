@@ -1,7 +1,7 @@
 export const SELECT_OPTIONS = [
   {
     label: <span>Выбор автомойки</span>,
-    title: "price",
+    title: "carwash",
     options: [
       { label: <span>Все автомойки</span>, value: "All" },
       { label: <span>AquaCar</span>, value: "AquaCar" },

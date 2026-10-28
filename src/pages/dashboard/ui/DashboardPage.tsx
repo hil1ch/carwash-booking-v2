@@ -3,7 +3,6 @@ import { UISelect } from "../../../shared/ui/UISelect";
 import { SELECT_OPTIONS } from "../model/options";
 import { UIStatistic } from "../../../shared/ui/UIStatistic";
 import { RecentBookingsTable } from "./RecentBookingsTable";
-import "./RecentBookingsTable.css";
 import { UIButton } from "../../../shared/ui/UIButton";
 import { MoveRight } from "lucide-react";
 

@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Avatar, Button, Dropdown, Table } from "antd";
+import { Avatar, Dropdown } from "antd";
+import { UIButton } from "../../../shared/ui/UIButton";
 import { UITag } from "../../../shared/ui/UITag";
+import { UITable } from "../../../shared/ui/UITable";
 import type { MenuProps, TableColumnsType } from "antd";
 import { Ellipsis, UserRound } from "lucide-react";
 
@@ -23,6 +25,30 @@ const INITIAL_BOOKINGS: Booking[] = [
     service: "Керамическая мойка",
     date: "12 апр, 14:00",
     status: "confirmed",
+  },
+  {
+    id: "booking-2",
+    customer: "Анна Смирнова",
+    phone: "+7 812 345-04-09",
+    service: "Мойка кузова + салон",
+    date: "12 апр, 15:30",
+    status: "pending",
+  },
+  {
+    id: "booking-2",
+    customer: "Анна Смирнова",
+    phone: "+7 812 345-04-09",
+    service: "Мойка кузова + салон",
+    date: "12 апр, 15:30",
+    status: "pending",
+  },
+  {
+    id: "booking-2",
+    customer: "Анна Смирнова",
+    phone: "+7 812 345-04-09",
+    service: "Мойка кузова + салон",
+    date: "12 апр, 15:30",
+    status: "pending",
   },
   {
     id: "booking-2",
@@ -58,7 +84,7 @@ export const RecentBookingsTable = () => {
             className="shrink-0 bg-blue-50 text-blue-600"
           />
           <div className="min-w-0">
-            <div className="font-semibold text-slate-800">
+            <div className="font-semibold">
               {booking.customer}
             </div>
             <div className="mt-1 text-sm text-gray-500">{booking.phone}</div>
@@ -104,6 +130,7 @@ export const RecentBookingsTable = () => {
             : {
                 key: "pending",
                 label: "Снять подтверждение",
+                danger: true,
                 onClick: () => updateStatus(booking.id, "pending"),
               },
         ];
@@ -114,7 +141,7 @@ export const RecentBookingsTable = () => {
             trigger={["click"]}
             placement="bottomRight"
           >
-            <Button
+            <UIButton
               type="text"
               aria-label={`Действия для записи: ${booking.customer}`}
               icon={<Ellipsis size={20} />}
@@ -126,12 +153,11 @@ export const RecentBookingsTable = () => {
   ];
 
   return (
-    <Table<Booking>
-      className="dashboard-bookings-table mt-3"
+    <UITable<Booking>
+      className="mt-3"
       columns={columns}
       dataSource={bookings}
       rowKey="id"
-      pagination={false}
       scroll={{ x: 680 }}
     />
   );
