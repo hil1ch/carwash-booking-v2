@@ -26,19 +26,12 @@ export const UIInput = ({
   const secondaryClass = variantStyleMap[variantStyle ?? "search"];
 
   return (
-    <div className="relative">
-      <Input
-        variant="filled"
-        status={error ? "error" : undefined}
-        className={classNames(mainClass, secondaryClass, className)}
-        size={size}
-        {...rest}
-      />
-      {error && (
-        <p className="absolute m-0 text-[10px] left-5 text-red-500 font-extralight">
-          {error}
-        </p>
-      )}
-    </div>
+    <Input
+      variant="filled"
+      status={error ? "error" : undefined}
+      className={classNames(mainClass, secondaryClass, className)}
+      size={size}
+      {...rest}
+    />
   );
 };

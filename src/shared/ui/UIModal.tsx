@@ -20,6 +20,8 @@ interface ModalProps {
   hideDefaultFooter?: boolean;
   zIndex?: number;
   confirmLoading?: boolean;
+  cancelText?: ReactNode;
+  width?: number;
 }
 
 export const UIModal: FC<ModalProps> = ({
@@ -39,6 +41,8 @@ export const UIModal: FC<ModalProps> = ({
   footer,
   hideDefaultFooter = false,
   zIndex = 1010,
+  cancelText,
+  width
 }) => {
   const defaultFooter = hideDefaultFooter ? null : (
     <UIButton
@@ -65,6 +69,8 @@ export const UIModal: FC<ModalProps> = ({
       zIndex={zIndex}
       footer={footer ?? defaultFooter}
       centered={centered}
+      cancelText={cancelText}
+      width={width}
     >
       {children}
       {description && <span className="text-center block">{description}</span>}

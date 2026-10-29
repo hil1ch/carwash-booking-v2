@@ -5,8 +5,16 @@ import { SELECT_OPTIONS } from "../model/options";
 import { MapPinIcon, Pencil, Plus } from "lucide-react";
 import carwashImg from "../assets/carwash-example.webp";
 import { ServicesTable } from "./ServicesTable";
+import { useState } from "react";
+import { CreateCarwashModal } from "../../../features/create-carwash";
 
 export const OwnerCarwashesPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
   return (
     <>
       <h1 className="text-xl font-semibold mb-5">Мои автомойки</h1>
@@ -21,7 +29,9 @@ export const OwnerCarwashesPage = () => {
           className="w-55 text-left"
           defaultValue={SELECT_OPTIONS[0].options[0]}
         />
-        <UIButton iconStart={<Plus size={20} />}>Добавить автомойку</UIButton>
+        <UIButton iconStart={<Plus size={20} />} onClick={handleModalOpen}>
+          Добавить автомойку
+        </UIButton>
       </div>
       <div className="flex items-stretch gap-3">
         <img
@@ -52,6 +62,13 @@ export const OwnerCarwashesPage = () => {
         </UIButton>
       </div>
       <ServicesTable />
+
+      {isModalOpen && (
+        <CreateCarwashModal
+          isModalOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </>
   );
 };

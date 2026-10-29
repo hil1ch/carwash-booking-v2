@@ -22,10 +22,10 @@ export const PaymentPage = () => {
             block
           >
             <Radio.Button
-              className="rounded-lg! text-center p-3! text-base!"
+              className="flex! items-center! w-full! rounded-lg! text-center p-3! text-base! [&>span:last-child]:block! [&>span:last-child]:w-full!"
               value="a"
             >
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex w-full items-center justify-between gap-4">
                 <span>Банковская карта</span>
                 <div className="flex items-center gap-4">
                   <img
@@ -106,7 +106,9 @@ export const PaymentPage = () => {
           <UIButton>Оплатить</UIButton>
           <div className="flex items-center gap-2 justify-center">
             <LockKeyhole size={16} />
-            <p className="text-gray-600 text-xs font-medium">Ваши данные защищены</p>
+            <p className="text-gray-600 text-xs font-medium">
+              Ваши данные защищены
+            </p>
           </div>
         </div>
       </div>
