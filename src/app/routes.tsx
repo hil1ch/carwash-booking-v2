@@ -19,6 +19,7 @@ import { DashboardPage } from "../pages/dashboard";
 import { OwnerCarwashesPage } from "../pages/owner-carwashes";
 import { NotFoundPage } from "../pages/not-found";
 import { OwnerBookingsPage } from "../pages/bookings";
+import { OwnerReviewsPage } from "../pages/owner-reviews";
 
 export const routes = createBrowserRouter([
   {
@@ -56,50 +57,6 @@ export const routes = createBrowserRouter([
         path: `${ROUTER_PATHS.CARWASHES}/:carwashId/:serviceId/${ROUTER_PATHS.PAYMENT}/${ROUTER_PATHS.SUCCESS}`,
         element: <SuccessPage />,
       },
-      //   {
-      //     path: APP_PATHS.route.article,
-      //     element: <ArticlesPage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.payment,
-      //     element: <PaymentPage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.contact,
-      //     element: <ContactsPage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.delivery,
-      //     element: <DeliveryPage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.carts,
-      //     element: <CartsPage />,
-      //   },
-      //   {
-      //     path: `${APP_PATHS.route.carts}/${APP_PATHS.route.order}`,
-      //     element: <OrderPage />,
-      //   },
-      //   {
-      //     path: `${APP_PATHS.route.carts}/${APP_PATHS.route.order}/${APP_PATHS.route.success}`,
-      //     element: <SuccessOrderPage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.favorite,
-      //     element: <FavoritePage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.visited,
-      //     element: <WatchingProductsPage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.privacy,
-      //     element: <PrivacyPage />,
-      //   },
-      //   {
-      //     path: APP_PATHS.route.agreement,
-      //     element: <AgreementPage />,
-      //   },
     ],
   },
   {
@@ -120,6 +77,10 @@ export const routes = createBrowserRouter([
       {
         path: ROUTER_PATHS.BOOKINGS,
         element: <OwnerBookingsPage />,
+      },
+      {
+        path: ROUTER_PATHS.OWNER_REVIEWS,
+        element: <OwnerReviewsPage />,
       },
     ],
   },
