@@ -11,7 +11,8 @@ const sharedProps = {
   style: { width: "100%" },
 };
 
-const mainClass = "";
+const mainClass =
+  "[&_.ant-input-number-input]:text-left! [&_.ant-input-number-suffix]:mr-2";
 
 export const UIInputNumber = ({
   value,

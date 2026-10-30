@@ -7,12 +7,18 @@ import carwashImg from "../assets/carwash-example.webp";
 import { ServicesTable } from "./ServicesTable";
 import { useState } from "react";
 import { CreateCarwashModal } from "../../../features/create-carwash";
+import { CreateServiceModal } from "../../../features/service";
 
 export const OwnerCarwashesPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isServiceModalOpen, setIsServiceModalOpen] = useState(false);
 
   const handleModalOpen = () => {
     setIsModalOpen((prev) => !prev);
+  };
+
+  const handleServiceModalOpen = () => {
+    setIsServiceModalOpen((prev) => !prev);
   };
 
   return (
@@ -57,7 +63,11 @@ export const OwnerCarwashesPage = () => {
       <Divider />
       <div className="flex items-center justify-between">
         <h3 className="text-base font-semibold">Услуги</h3>
-        <UIButton type="default" iconStart={<Plus size={20} />}>
+        <UIButton
+          type="default"
+          iconStart={<Plus size={20} />}
+          onClick={handleServiceModalOpen}
+        >
           Добавить услугу
         </UIButton>
       </div>
@@ -68,6 +78,10 @@ export const OwnerCarwashesPage = () => {
           isModalOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
         />
+      )}
+
+      {isServiceModalOpen && (
+        <CreateServiceModal isServiceModalOpen={isServiceModalOpen} />
       )}
     </>
   );

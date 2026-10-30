@@ -57,7 +57,7 @@ export const CreateCarwashModal = ({
   };
 
   const footer = (
-    <div className="flex mt-10 w-full gap-4">
+    <div className="flex w-full gap-4">
       <UIButton
         type="default"
         onClick={current === 0 ? handleClose : handleBack}

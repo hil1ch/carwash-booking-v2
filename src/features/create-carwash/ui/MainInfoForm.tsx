@@ -1,5 +1,6 @@
-import { AutoComplete, Form, Input } from "antd";
+import { AutoComplete, Form } from "antd";
 import { UIInput } from "../../../shared/ui/UIInput";
+import { UITextArea } from "../../../shared/ui/UITextArea";
 import { WorkingDaysField } from "./WorkingDaysField";
 import { WorkingHoursField } from "./WorkingHoursField";
 
@@ -51,14 +52,11 @@ export const MainInfoForm = () => {
           </span>
         }
         name="description"
-        className="w-full mb-0!"
+        className="w-full"
         layout="vertical"
       >
-        <Input.TextArea
+        <UITextArea
           placeholder="Напишите особенности автомойки"
-          showCount
-          maxLength={500}
-          autoSize={{ minRows: 4, maxRows: 6 }}
         />
       </Form.Item>
     </>

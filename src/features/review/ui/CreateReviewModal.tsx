@@ -2,8 +2,9 @@ import { UIModal } from "../../../shared/ui/UIModal";
 import carwashImg from "../assets/carwash-example.webp";
 import { MapPinIcon } from "lucide-react";
 import { UIRate } from "../../../shared/ui/UIRate";
-import { Divider, Form, Input } from "antd";
+import { Divider, Form } from "antd";
 import { UICheckboxGroup } from "../../../shared/ui/UICheckboxGroup";
+import { UITextArea } from "../../../shared/ui/UITextArea";
 
 export const CreateReviewModal = () => {
   return (
@@ -48,11 +49,8 @@ export const CreateReviewModal = () => {
           className="w-full mb-0!"
           layout="vertical"
         >
-          <Input.TextArea
+          <UITextArea
             placeholder="Поделитесь своими впечатлениями..."
-            showCount
-            maxLength={500}
-            autoSize={{ minRows: 4, maxRows: 6 }}
           />
         </Form.Item>
         <Form.Item
