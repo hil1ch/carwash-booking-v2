@@ -1,15 +1,32 @@
+import { useState } from "react";
 import { Segmented } from "antd";
 import { UISelect } from "../../../shared/ui/UISelect";
 import { SELECT_OPTIONS } from "../model/options";
 import { UIStatistic } from "../../../shared/ui/UIStatistic";
-import { RecentBookingsTable } from "./RecentBookingsTable";
 import { UIButton } from "../../../shared/ui/UIButton";
 import { MoveRight } from "lucide-react";
+import { BookingsTable } from "../../../entities/booking";
+import type { Booking, BookingStatus } from "../../../entities/booking";
+import { INITIAL_BOOKINGS } from "../../../entities/booking/model/mockBookings";
+import { ROUTER_PATHS } from "../../../shared/constants/routes";
 
 const PERIOD_OPTIONS = ["Сегодня", "7 дней", "Месяц"] as const;
 type Period = (typeof PERIOD_OPTIONS)[number];
 
 export const DashboardPage = () => {
+  const [bookings, setBookings] = useState<Booking[]>(INITIAL_BOOKINGS);
+  const recentBookings = [...bookings]
+    .sort((first, second) => Date.parse(second.date) - Date.parse(first.date))
+    .slice(0, 5);
+
+  const updateBookingStatus = (id: string, status: BookingStatus) => {
+    setBookings((currentBookings) =>
+      currentBookings.map((booking) =>
+        booking.id === id ? { ...booking, status } : booking,
+      ),
+    );
+  };
+
   return (
     <>
       <h1 className="text-xl font-semibold mb-5">Дашборд</h1>
@@ -42,7 +59,7 @@ export const DashboardPage = () => {
         <h3 className="text-base font-semibold">Последние бронирования</h3>
         <UIButton
           isLink
-          href=""
+          href={ROUTER_PATHS.BOOKINGS}
           type="link"
           className="text-sm!"
           iconEnd={<MoveRight size={16} />}
@@ -50,7 +67,10 @@ export const DashboardPage = () => {
           Все бронирования
         </UIButton>
       </div>
-      <RecentBookingsTable />
+      <BookingsTable
+        bookings={recentBookings}
+        onStatusChange={updateBookingStatus}
+      />
     </>
   );
 };

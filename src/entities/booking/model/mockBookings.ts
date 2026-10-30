@@ -1,0 +1,68 @@
+import type { Booking } from "./types";
+
+export const INITIAL_BOOKINGS: Booking[] = [
+  {
+    id: "booking-1",
+    customer: "Иван Петров",
+    phone: "+7 800 523-45-67",
+    service: "Керамическая мойка",
+    date: "2026-04-12T14:00:00",
+    status: "confirmed",
+  },
+  {
+    id: "booking-2",
+    customer: "Анна Смирнова",
+    phone: "+7 812 345-04-09",
+    service: "Мойка кузова + салон",
+    date: "2026-04-12T15:30:00",
+    status: "pending",
+  },
+  {
+    id: "booking-3",
+    customer: "Сергей Волков",
+    phone: "+7 900 123-45-67",
+    service: "Экспресс-мойка",
+    date: "2026-04-13T10:00:00",
+    status: "confirmed",
+  },
+  {
+    id: "booking-4",
+    customer: "Мария Кузнецова",
+    phone: "+7 901 234-56-78",
+    service: "Химчистка салона",
+    date: "2026-04-13T12:30:00",
+    status: "pending",
+  },
+  {
+    id: "booking-5",
+    customer: "Алексей Соколов",
+    phone: "+7 902 345-67-89",
+    service: "Полировка кузова",
+    date: "2026-04-14T09:00:00",
+    status: "confirmed",
+  },
+  {
+    id: "booking-6",
+    customer: "Елена Попова",
+    phone: "+7 903 456-78-90",
+    service: "Керамическая мойка",
+    date: "2026-04-14T11:30:00",
+    status: "pending",
+  },
+  {
+    id: "booking-7",
+    customer: "Дмитрий Новиков",
+    phone: "+7 904 567-89-01",
+    service: "Мойка кузова + салон",
+    date: "2026-04-15T13:00:00",
+    status: "confirmed",
+  },
+  {
+    id: "booking-8",
+    customer: "Ольга Морозова",
+    phone: "+7 905 678-90-12",
+    service: "Экспресс-мойка",
+    date: "2026-04-15T16:00:00",
+    status: "pending",
+  },
+];

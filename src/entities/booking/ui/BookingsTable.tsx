@@ -1,76 +1,30 @@
-import { useState } from "react";
 import { Avatar, Dropdown } from "antd";
-import { UIButton } from "../../../shared/ui/UIButton";
-import { UITag } from "../../../shared/ui/UITag";
-import { UITable } from "../../../shared/ui/UITable";
-import type { MenuProps, TableColumnsType } from "antd";
+import type { MenuProps, TableColumnsType, TableProps } from "antd";
 import { Ellipsis, UserRound } from "lucide-react";
+import { UIButton } from "../../../shared/ui/UIButton";
+import { UITable } from "../../../shared/ui/UITable";
+import { UITag } from "../../../shared/ui/UITag";
+import type { Booking, BookingStatus } from "../model/types";
 
-type BookingStatus = "confirmed" | "pending";
-
-type Booking = {
-  id: string;
-  customer: string;
-  phone: string;
-  service: string;
-  date: string;
-  status: BookingStatus;
+type BookingsTableProps = {
+  bookings: Booking[];
+  onStatusChange: (id: string, status: BookingStatus) => void;
+  pagination?: TableProps<Booking>["pagination"];
 };
 
-const INITIAL_BOOKINGS: Booking[] = [
-  {
-    id: "booking-1",
-    customer: "Иван Петров",
-    phone: "+7 800 523-45-67",
-    service: "Керамическая мойка",
-    date: "12 апр, 14:00",
-    status: "confirmed",
-  },
-  {
-    id: "booking-2",
-    customer: "Анна Смирнова",
-    phone: "+7 812 345-04-09",
-    service: "Мойка кузова + салон",
-    date: "12 апр, 15:30",
-    status: "pending",
-  },
-  {
-    id: "booking-2",
-    customer: "Анна Смирнова",
-    phone: "+7 812 345-04-09",
-    service: "Мойка кузова + салон",
-    date: "12 апр, 15:30",
-    status: "pending",
-  },
-  {
-    id: "booking-2",
-    customer: "Анна Смирнова",
-    phone: "+7 812 345-04-09",
-    service: "Мойка кузова + салон",
-    date: "12 апр, 15:30",
-    status: "pending",
-  },
-  {
-    id: "booking-2",
-    customer: "Анна Смирнова",
-    phone: "+7 812 345-04-09",
-    service: "Мойка кузова + салон",
-    date: "12 апр, 15:30",
-    status: "pending",
-  },
-];
+const formatBookingDate = (date: string) =>
+  new Date(date).toLocaleString("ru-RU", {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
-export const RecentBookingsTable = () => {
-  const [bookings, setBookings] = useState(INITIAL_BOOKINGS);
-
-  const updateStatus = (id: string, status: BookingStatus) => {
-    setBookings((currentBookings) =>
-      currentBookings.map((booking) =>
-        booking.id === id ? { ...booking, status } : booking,
-      ),
-    );
-  };
-
+export const BookingsTable = ({
+  bookings,
+  onStatusChange,
+  // pagination = false,
+}: BookingsTableProps) => {
   const columns: TableColumnsType<Booking> = [
     {
       title: "Клиент",
@@ -84,9 +38,7 @@ export const RecentBookingsTable = () => {
             className="shrink-0 bg-blue-50 text-blue-600"
           />
           <div className="min-w-0">
-            <div className="font-semibold">
-              {booking.customer}
-            </div>
+            <div className="font-semibold">{booking.customer}</div>
             <div className="mt-1 text-sm text-gray-500">{booking.phone}</div>
           </div>
         </div>
@@ -101,6 +53,7 @@ export const RecentBookingsTable = () => {
       title: "Время",
       dataIndex: "date",
       key: "date",
+      render: (date: string) => formatBookingDate(date),
     },
     {
       title: "Статус",
@@ -125,13 +78,13 @@ export const RecentBookingsTable = () => {
             ? {
                 key: "confirm",
                 label: "Подтвердить",
-                onClick: () => updateStatus(booking.id, "confirmed"),
+                onClick: () => onStatusChange(booking.id, "confirmed"),
               }
             : {
                 key: "pending",
                 label: "Снять подтверждение",
                 danger: true,
-                onClick: () => updateStatus(booking.id, "pending"),
+                onClick: () => onStatusChange(booking.id, "pending"),
               },
         ];
 
@@ -159,6 +112,7 @@ export const RecentBookingsTable = () => {
       dataSource={bookings}
       rowKey="id"
       scroll={{ x: 680 }}
+      // pagination={pagination}
     />
   );
 };

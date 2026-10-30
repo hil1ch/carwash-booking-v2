@@ -18,6 +18,7 @@ import { OwnerLayout } from "./layout/OwnerLayout";
 import { DashboardPage } from "../pages/dashboard";
 import { OwnerCarwashesPage } from "../pages/owner-carwashes";
 import { NotFoundPage } from "../pages/not-found";
+import { OwnerBookingsPage } from "../pages/bookings";
 
 export const routes = createBrowserRouter([
   {
@@ -116,10 +117,10 @@ export const routes = createBrowserRouter([
         path: ROUTER_PATHS.OWNER_CARWASH,
         element: <OwnerCarwashesPage />,
       },
-      // {
-      //   path: ROUTER_PATHS.USER_REVIEWS,
-      //   element: <ReviewsPage />,
-      // },
+      {
+        path: ROUTER_PATHS.BOOKINGS,
+        element: <OwnerBookingsPage />,
+      },
     ],
   },
 
