@@ -37,9 +37,9 @@ export const BookingsTable = ({
             icon={<UserRound size={23} />}
             className="shrink-0 bg-blue-50 text-blue-600"
           />
-          <div className="min-w-0">
-            <div className="font-semibold">{booking.customer}</div>
-            <div className="mt-1 text-sm text-gray-500">{booking.phone}</div>
+          <div className="min-w-0 flex flex-col">
+            <span className="font-semibold">{booking.customer}</span>
+            <span className="mt-1 text-sm text-gray-500">{booking.phone}</span>
           </div>
         </div>
       ),
