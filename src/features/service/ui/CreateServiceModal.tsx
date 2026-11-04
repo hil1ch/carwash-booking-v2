@@ -1,5 +1,5 @@
 import { UIModal } from "../../../shared/ui/UIModal";
-import { Form, TimePicker } from "antd";
+import { Form } from "antd";
 import { UIInput } from "../../../shared/ui/UIInput";
 import { UISelect } from "../../../shared/ui/UISelect";
 import { SELECT_OPTIONS } from "../model/options";
@@ -98,9 +98,9 @@ export const CreateServiceModal = ({
           </Form.Item>
           <Form.Item
             label={
-              <span className="text-base font-semibold">Время выполнения</span>
+              <span className="text-base font-semibold">Длительность</span>
             }
-            name="time"
+            name="durationMinutes"
             className="w-full mb-0!"
             layout="vertical"
             rules={[
@@ -110,18 +110,20 @@ export const CreateServiceModal = ({
               },
             ]}
           >
-            <TimePicker
-              format="HH:mm"
-              minuteStep={15}
-              size="large"
-              className="w-full"
-              placeholder="Укажите время"
+            <UIInputNumber
+              min={15}
+              precision={0}
+              step={15}
+              suffix="мин"
+              placeholder="Укажите длительность"
             />
           </Form.Item>
         </div>
         <Form.Item
           label={<span className="text-base font-semibold">Статус</span>}
-          name="status"
+          name="isActive"
+          valuePropName="checked"
+          initialValue={true}
           className="w-full"
           layout="vertical"
         >

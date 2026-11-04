@@ -1,2 +1,2 @@
-export type { Service } from "./model//types.ts";
+export type { Service, ServiceCategory } from "./model/types";
 export { ServiceCard } from "./ui/ServiceCard.tsx";

@@ -1,1 +1,239 @@
-{}
+{
+  "owners": [
+    {
+      "id": 1,
+      "name": "Александр Морозов",
+      "companyName": "Аква Парк",
+      "phone": "+7 343 200-10-01",
+      "email": "owner1@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Екатерина Волкова",
+      "companyName": "Чистый Город",
+      "phone": "+7 343 200-10-02",
+      "email": "owner2@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Дмитрий Соколов",
+      "companyName": "Блеск Авто",
+      "phone": "+7 343 200-10-03",
+      "email": "owner3@example.com"
+    }
+  ],
+  "carwashes": [
+    {
+      "id": 1,
+      "ownerId": 1,
+      "name": "Аква Парк на Малышева",
+      "description": "Ручная мойка с бережной сушкой и зоной ожидания для клиентов.",
+      "price": 600,
+      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "isFavorite": false,
+      "location": {
+        "city": "Екатеринбург",
+        "address": "ул. Малышева, 36",
+        "latitude": 56.8389,
+        "longitude": 60.6057
+      },
+      "phone": "+7 343 200-10-11",
+      "email": "malysheva@aquapark.example",
+      "workingDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "openingTime": "08:00",
+      "closingTime": "22:00",
+      "breaks": [],
+      "services": [
+        { "id": 1, "name": "Экспресс-мойка", "category": "body", "description": "Мойка кузова и сушка", "price": 600, "durationMinutes": 30, "isActive": true },
+        { "id": 2, "name": "Комплексная мойка", "category": "complex", "description": "Кузов, коврики и уборка салона", "price": 1200, "durationMinutes": 60, "isActive": true },
+        { "id": 3, "name": "Мойка двигателя", "category": "engine", "description": "Бережная очистка подкапотного пространства", "price": 1500, "durationMinutes": 45, "isActive": true }
+      ],
+      "reviews": [
+        {
+          "id": "review-1",
+          "name": "Анна",
+          "rating": 5,
+          "text": "Быстро приняли, кузов вымыт отлично. Удобно записываться заранее.",
+          "user": "user-1",
+          "date": "2026-10-18",
+          "tags": ["Качество", "Скорость"]
+        },
+        {
+          "id": "review-2",
+          "name": "Илья",
+          "rating": 4,
+          "text": "Хорошая мойка и вежливый персонал. В час пик лучше записаться.",
+          "user": "user-2",
+          "date": "2026-10-12",
+          "tags": ["Персонал"]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "ownerId": 1,
+      "name": "Аква Парк на Восточной",
+      "description": "Автомойка с отдельными постами для комплексного ухода за автомобилем.",
+      "price": 700,
+      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "isFavorite": false,
+      "location": {
+        "city": "Екатеринбург",
+        "address": "ул. Восточная, 25",
+        "latitude": 56.8294,
+        "longitude": 60.6331
+      },
+      "phone": "+7 343 200-10-12",
+      "email": "vostochnaya@aquapark.example",
+      "workingDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "openingTime": "09:00",
+      "closingTime": "23:00",
+      "breaks": [{ "start": "14:00", "end": "14:30" }],
+      "services": [
+        { "id": 4, "name": "Мойка кузова", "category": "body", "description": "Предварительная обработка и ручная мойка", "price": 700, "durationMinutes": 35, "isActive": true },
+        { "id": 5, "name": "Кузов и салон", "category": "complex", "description": "Мойка кузова и уборка салона пылесосом", "price": 1400, "durationMinutes": 70, "isActive": true },
+        { "id": 6, "name": "Защитный воск", "category": "protection", "description": "Нанесение воска после мойки", "price": 500, "durationMinutes": 20, "isActive": true }
+      ],
+      "reviews": [
+        {
+          "id": "review-3",
+          "name": "Олег",
+          "rating": 5,
+          "text": "Удобное расположение, машину выдали чистой и без разводов.",
+          "user": "user-3",
+          "date": "2026-10-22",
+          "tags": ["Расположение", "Качество"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "ownerId": 2,
+      "name": "Чистый Город на Луначарского",
+      "description": "Круглосуточные посты и предварительная запись на детейлинг-услуги.",
+      "price": 500,
+      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "isFavorite": false,
+      "location": {
+        "city": "Екатеринбург",
+        "address": "ул. Луначарского, 81",
+        "latitude": 56.8451,
+        "longitude": 60.6152
+      },
+      "phone": "+7 343 200-10-21",
+      "email": "lunacharskogo@clean-city.example",
+      "workingDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "openingTime": "00:00",
+      "closingTime": "23:59",
+      "breaks": [],
+      "services": [
+        { "id": 7, "name": "Быстрая мойка", "category": "body", "description": "Наружная мойка кузова", "price": 500, "durationMinutes": 25, "isActive": true },
+        { "id": 8, "name": "Химчистка салона", "category": "salon", "description": "Глубокая чистка текстильных поверхностей", "price": 4500, "durationMinutes": 180, "isActive": true },
+        { "id": 9, "name": "Полировка кузова", "category": "polishing", "description": "Восстановительная полировка лакокрасочного покрытия", "price": 6000, "durationMinutes": 240, "isActive": true }
+      ],
+      "reviews": [
+        {
+          "id": "review-4",
+          "name": "Мария",
+          "rating": 4,
+          "text": "Записалась на удобное время, салон после химчистки выглядит заметно лучше.",
+          "user": "user-4",
+          "date": "2026-10-16",
+          "tags": ["Запись", "Химчистка"]
+        },
+        {
+          "id": "review-5",
+          "name": "Павел",
+          "rating": 5,
+          "text": "Выручили поздно вечером, качество мойки отличное.",
+          "user": "user-5",
+          "date": "2026-10-09",
+          "tags": ["График", "Качество"]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "ownerId": 2,
+      "name": "Чистый Город на Щербакова",
+      "description": "Семейная автомойка с комнатой ожидания и детским уголком.",
+      "price": 650,
+      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "isFavorite": false,
+      "location": {
+        "city": "Екатеринбург",
+        "address": "ул. Щербакова, 5",
+        "latitude": 56.7907,
+        "longitude": 60.6396
+      },
+      "phone": "+7 343 200-10-22",
+      "email": "shcherbakova@clean-city.example",
+      "workingDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
+      "openingTime": "08:00",
+      "closingTime": "21:00",
+      "breaks": [{ "start": "13:00", "end": "13:30" }],
+      "services": [
+        { "id": 10, "name": "Мойка кузова", "category": "body", "description": "Ручная мойка с сушкой", "price": 650, "durationMinutes": 35, "isActive": true },
+        { "id": 11, "name": "Комплекс для салона", "category": "salon", "description": "Пылесос, очистка пластика и стекол", "price": 1100, "durationMinutes": 50, "isActive": true },
+        { "id": 12, "name": "Мойка днища", "category": "body", "description": "Очистка днища и колесных арок", "price": 800, "durationMinutes": 30, "isActive": true }
+      ],
+      "reviews": [
+        {
+          "id": "review-6",
+          "name": "Светлана",
+          "rating": 5,
+          "text": "Есть где подождать с ребенком, машину помыли аккуратно.",
+          "user": "user-6",
+          "date": "2026-10-20",
+          "tags": ["Ожидание", "Качество"]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "ownerId": 3,
+      "name": "Блеск Авто на Белинского",
+      "description": "Детейлинг-центр с защитными покрытиями и услугами для салона.",
+      "price": 900,
+      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "isFavorite": false,
+      "location": {
+        "city": "Екатеринбург",
+        "address": "ул. Белинского, 169",
+        "latitude": 56.8108,
+        "longitude": 60.6238
+      },
+      "phone": "+7 343 200-10-31",
+      "email": "belinskogo@blesk-auto.example",
+      "workingDays": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "openingTime": "09:00",
+      "closingTime": "21:00",
+      "breaks": [],
+      "services": [
+        { "id": 13, "name": "Деликатная мойка", "category": "body", "description": "Бережная мойка кузова с защитным шампунем", "price": 900, "durationMinutes": 45, "isActive": true },
+        { "id": 14, "name": "Керамическое покрытие", "category": "protection", "description": "Нанесение защитного керамического состава", "price": 12000, "durationMinutes": 300, "isActive": true },
+        { "id": 15, "name": "Уход за кожаным салоном", "category": "salon", "description": "Очистка и обработка кожаных поверхностей", "price": 2500, "durationMinutes": 90, "isActive": true }
+      ],
+      "reviews": [
+        {
+          "id": "review-7",
+          "name": "Кирилл",
+          "rating": 5,
+          "text": "Подробно объяснили этапы нанесения покрытия, результатом доволен.",
+          "user": "user-7",
+          "date": "2026-10-24",
+          "tags": ["Сервис", "Результат"]
+        },
+        {
+          "id": "review-8",
+          "name": "Татьяна",
+          "rating": 4,
+          "text": "Хороший уход за салоном, удалось выбрать удобное время.",
+          "user": "user-8",
+          "date": "2026-10-11",
+          "tags": ["Салон", "Запись"]
+        }
+      ]
+    }
+  ]
+}

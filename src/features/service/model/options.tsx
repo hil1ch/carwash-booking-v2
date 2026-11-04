@@ -5,7 +5,10 @@ export const SELECT_OPTIONS = [
     options: [
       { label: <span>Мойка кузова</span>, value: "body" },
       { label: <span>Уборка салона</span>, value: "salon" },
+      { label: <span>Комплексная мойка</span>, value: "complex" },
       { label: <span>Полировка</span>, value: "polishing" },
+      { label: <span>Защитные покрытия</span>, value: "protection" },
+      { label: <span>Мойка двигателя</span>, value: "engine" },
     ],
   },
 ];
