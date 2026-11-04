@@ -3,39 +3,49 @@ import loginImg from "../assets/washnow_login_car.webp";
 import type { TabsProps } from "antd";
 
 import { SignInForm } from "../../../features/sign-in";
-import { SignUpOwnerForm } from "../../../features/sign-up";
+import { SignUpClientForm, SignUpOwnerForm } from "../../../features/sign-up";
 import { UITab } from "../../../shared/ui/UITab";
 
 import styles from "./SignInPage.module.css";
 
-const items: TabsProps["items"] = [
-  {
-    key: "1",
-    label: "Вход",
-    children: (
-      <>
-        <h2 className="mr-auto text-left font-semibold text-xl my-5">
-          Вход для клиента
-        </h2>
-        <SignInForm />
-      </>
-    ),
-  },
-  {
-    key: "2",
-    label: "Регистрация",
-    children: (
-      <>
-        <h2 className="mr-auto text-left font-semibold text-xl my-5">
-          Регистрация владельца автомойки
-        </h2>
-        <SignUpOwnerForm />
-      </>
-    ),
-  },
-];
+type SignInPageProps = {
+  role: "client" | "owner";
+};
 
-export const SignInPage = () => {
+export const SignInPage = ({ role }: SignInPageProps) => {
+  const isOwner = role === "owner";
+  const registrationForm = isOwner ? (
+    <SignUpOwnerForm />
+  ) : (
+    <SignUpClientForm />
+  );
+  const items: TabsProps["items"] = [
+    {
+      key: "1",
+      label: "Вход",
+      children: (
+        <>
+          <h2 className="mr-auto text-left font-semibold text-xl my-5">
+            Вход для {isOwner ? "владельца автомойки" : "клиента"}
+          </h2>
+          <SignInForm />
+        </>
+      ),
+    },
+    {
+      key: "2",
+      label: "Регистрация",
+      children: (
+        <>
+          <h2 className="mr-auto text-left font-semibold text-xl my-5">
+            Регистрация {isOwner ? "владельца автомойки" : "клиента"}
+          </h2>
+          {registrationForm}
+        </>
+      ),
+    },
+  ];
+
   return (
     <div className="flex min-h-dvh w-full">
       <div className="sticky top-0 h-dvh w-1/3 shrink-0 self-start overflow-hidden">

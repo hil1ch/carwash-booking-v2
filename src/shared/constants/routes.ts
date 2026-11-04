@@ -2,6 +2,7 @@ export const ROUTER_PATHS = {
   HOME: "/",
   CARWASHES: "/carwashes",
   SIGN_IN: "/sign-in",
+  OWNER_SIGN_IN: "/owner/sign-in",
   FAVORITE: "/favorite",
   PAYMENT: "payment",
   SUCCESS: "success",

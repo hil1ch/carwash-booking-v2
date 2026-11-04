@@ -28,7 +28,11 @@ export const routes = createBrowserRouter([
   },
   {
     path: ROUTER_PATHS.SIGN_IN,
-    element: <SignInPage />,
+    element: <SignInPage role="client" />,
+  },
+  {
+    path: ROUTER_PATHS.OWNER_SIGN_IN,
+    element: <SignInPage role="owner" />,
   },
   {
     element: (
