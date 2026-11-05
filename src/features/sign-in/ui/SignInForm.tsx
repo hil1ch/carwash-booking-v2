@@ -2,7 +2,8 @@ import { Alert, Form } from "antd";
 import { UIInput } from "../../../shared/ui/UIInput";
 import { UIButton } from "../../../shared/ui/UIButton";
 import { useSignIn } from "../model/useSignIn";
-import { SessionApiError, type SignInCredentials } from "../../../entities/session";
+import type { SignInCredentials } from "../../../entities/session";
+import { ApiError } from "../../../shared/api";
 import { trimValue } from "../../../shared/lib/normalize";
 
 export const SignInForm = ({ role }: { role: "client" | "owner" }) => {
@@ -24,7 +25,7 @@ export const SignInForm = ({ role }: { role: "client" | "owner" }) => {
           type="error"
           showIcon
           title={signInMutation.error.message}
-          description={signInMutation.error instanceof SessionApiError
+          description={signInMutation.error instanceof ApiError
             ? Object.values(signInMutation.error.fieldErrors ?? {}).join(" ") || undefined
             : undefined}
         />

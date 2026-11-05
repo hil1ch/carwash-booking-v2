@@ -2,7 +2,7 @@ import { Alert, Form } from "antd";
 import { UIInput } from "../../../shared/ui/UIInput";
 import { UIButton } from "../../../shared/ui/UIButton";
 import { useSignUp } from "../model/useSignUp";
-import { SessionApiError } from "../../../entities/session";
+import { ApiError } from "../../../shared/api";
 import {
   emailRules,
   passwordConfirmationRule,
@@ -48,9 +48,9 @@ export const SignUpClientForm = () => {
           className="mb-4"
           type="error"
           showIcon
-          message={signUpMutation.error.message}
+          title={signUpMutation.error.message}
           description={
-            signUpMutation.error instanceof SessionApiError
+            signUpMutation.error instanceof ApiError
               ? Object.values(signUpMutation.error.fieldErrors ?? {}).join(
                   " ",
                 ) || undefined

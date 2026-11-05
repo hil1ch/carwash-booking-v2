@@ -5,7 +5,7 @@ import { UISelect } from "../../../shared/ui/UISelect";
 import { UIInputNumber } from "../../../shared/ui/UIInputNumber";
 import { SELECT_TYPE_OPTIONS } from "../model/options";
 import { useSignUp } from "../model/useSignUp";
-import { SessionApiError } from "../../../entities/session";
+import { ApiError } from "../../../shared/api";
 import {
   emailRules,
   organizationNumberRules,
@@ -66,7 +66,7 @@ export const SignUpOwnerForm = () => {
           showIcon
           title={signUpMutation.error.message}
           description={
-            signUpMutation.error instanceof SessionApiError
+            signUpMutation.error instanceof ApiError
               ? Object.values(signUpMutation.error.fieldErrors ?? {}).join(
                   " ",
                 ) || undefined

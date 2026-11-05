@@ -10,7 +10,6 @@ export type {
 export {
   clearAccessToken,
   getCurrentSession,
-  SessionApiError,
   signIn,
   signOut,
   signUp,

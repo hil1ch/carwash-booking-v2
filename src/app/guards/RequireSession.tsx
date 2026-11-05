@@ -1,10 +1,10 @@
 import { Alert, Spin } from "antd";
 import { Navigate, Outlet } from "react-router";
 import {
-  SessionApiError,
   useCurrentSession,
   type UserRole,
 } from "../../entities/session";
+import { ApiError } from "../../shared/api";
 import { ROUTER_PATHS } from "../../shared/constants";
 import { UIButton } from "../../shared/ui/UIButton";
 
@@ -27,7 +27,7 @@ export const RequireSession = ({ role }: { role: UserRole }) => {
           showIcon
           title="Не удалось проверить сессию"
           description={
-            error instanceof SessionApiError
+            error instanceof ApiError
               ? error.message
               : "Проверьте соединение и попробуйте снова."
           }
