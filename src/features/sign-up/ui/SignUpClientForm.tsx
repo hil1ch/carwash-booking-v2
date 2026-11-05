@@ -1,54 +1,130 @@
-import { Form } from "antd";
+import { Alert, Form } from "antd";
 import { UIInput } from "../../../shared/ui/UIInput";
 import { UIButton } from "../../../shared/ui/UIButton";
+import { useSignUp } from "../model/useSignUp";
+import { SessionApiError } from "../../../entities/session";
+import {
+  emailRules,
+  passwordConfirmationRule,
+  passwordRules,
+  personNameRules,
+  phoneRules,
+} from "../model/validation";
+import { trimValue } from "../../../shared/lib/normalize";
+
+type ClientFormValues = {
+  name: string;
+  lastname: string;
+  email: string;
+  tel: string;
+  password: string;
+  passwordConfirmation: string;
+};
 
 export const SignUpClientForm = () => {
+  const [form] = Form.useForm<ClientFormValues>();
+  const signUpMutation = useSignUp("client");
+
   return (
     <Form
+      form={form}
       className="w-full text-left"
       size="large"
       layout="vertical"
       noValidate
+      onFinish={(values: ClientFormValues) =>
+        signUpMutation.mutate({
+          role: "user",
+          name: values.name,
+          lastname: values.lastname,
+          email: values.email,
+          tel: values.tel,
+          password: values.password,
+        })
+      }
     >
+      {signUpMutation.error && (
+        <Alert
+          className="mb-4"
+          type="error"
+          showIcon
+          message={signUpMutation.error.message}
+          description={
+            signUpMutation.error instanceof SessionApiError
+              ? Object.values(signUpMutation.error.fieldErrors ?? {}).join(
+                  " ",
+                ) || undefined
+              : undefined
+          }
+        />
+      )}
       <Form.Item
         label="Имя"
         name="name"
-        rules={[{ required: true, message: "Заполните ваше имя" }]}
+        normalize={trimValue}
+        rules={personNameRules}
         className="[&_.ant-form-item-label]:pb-0!"
       >
-        <UIInput type="text" placeholder="Введите ваше имя" />
+        <UIInput
+          type="text"
+          autoComplete="given-name"
+          maxLength={60}
+          placeholder="Введите ваше имя"
+        />
       </Form.Item>
       <Form.Item
         label="Фамилия"
         name="lastname"
-        rules={[{ required: true, message: "Заполните вашу фамилию" }]}
+        normalize={trimValue}
+        rules={personNameRules}
         className="[&_.ant-form-item-label]:pb-0!"
       >
-        <UIInput type="text" placeholder="Введите вашу фамилию" />
+        <UIInput
+          type="text"
+          autoComplete="family-name"
+          maxLength={60}
+          placeholder="Введите вашу фамилию"
+        />
       </Form.Item>
       <Form.Item
         label="Email"
         name="email"
-        rules={[{ required: true, message: "Заполните вашу почту" }]}
+        normalize={trimValue}
+        rules={emailRules}
         className="[&_.ant-form-item-label]:pb-0!"
       >
-        <UIInput type="email" placeholder="name@example.ru" />
+        <UIInput
+          type="email"
+          autoComplete="email"
+          maxLength={254}
+          placeholder="name@example.ru"
+        />
       </Form.Item>
       <Form.Item
         label="Телефон"
         name="tel"
-        rules={[{ required: true, message: "Заполните ваш телефон" }]}
+        normalize={trimValue}
+        rules={phoneRules}
         className="[&_.ant-form-item-label]:pb-0!"
       >
-        <UIInput type="tel" placeholder="+7 912 345 67 89" />
+        <UIInput
+          type="tel"
+          autoComplete="tel"
+          maxLength={20}
+          placeholder="+7 912 345 67 89"
+        />
       </Form.Item>
       <Form.Item
         label="Пароль"
         name="password"
-        rules={[{ required: true, message: "Заполнить ваш пароль" }]}
+        rules={passwordRules}
         className="[&_.ant-form-item-label]:pb-0!"
       >
-        <UIInput type="password" placeholder="Введите ваш пароль" />
+        <UIInput
+          type="password"
+          autoComplete="new-password"
+          placeholder="Введите ваш пароль"
+        />
       </Form.Item>
       <Form.Item
         label="Подтверждение пароля"
@@ -56,22 +132,25 @@ export const SignUpClientForm = () => {
         dependencies={["password"]}
         rules={[
           { required: true, message: "Повторите пароль" },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
-                return Promise.resolve();
-              }
-
-              return Promise.reject(new Error("Пароли не совпадают"));
-            },
-          }),
+          ({ getFieldValue }) =>
+            passwordConfirmationRule(() => getFieldValue("password")),
         ]}
         className="[&_.ant-form-item-label]:pb-0!"
       >
-        <UIInput type="password" placeholder="Подтвердите ваш пароль" />
+        <UIInput
+          type="password"
+          autoComplete="new-password"
+          placeholder="Подтвердите ваш пароль"
+        />
       </Form.Item>
       <Form.Item>
-        <UIButton type="primary" htmlType="submit" className="w-full">
+        <UIButton
+          type="primary"
+          htmlType="submit"
+          loading={signUpMutation.isPending}
+          disabled={signUpMutation.isPending}
+          className="w-full"
+        >
           Зарегистрироваться
         </UIButton>
       </Form.Item>

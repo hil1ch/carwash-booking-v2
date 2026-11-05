@@ -5,14 +5,18 @@ import { UIButton } from "./UIButton";
 
 type UISidebarProps = {
   children?: ReactNode;
-  name?: string;
-  email?: string;
+  name: string;
+  email: string;
+  onSignOut: () => void;
+  isSigningOut: boolean;
 };
 
 export const UISidebar = ({
   children,
-  name = "Имя Фамилия",
-  email = "example@mail.ru",
+  name,
+  email,
+  onSignOut,
+  isSigningOut,
 }: UISidebarProps) => {
   return (
     <aside className="sticky top-(--header-height) flex h-full flex-col overflow-y-auto border-r border-gray-200 bg-white py-5 px-4">
@@ -32,6 +36,10 @@ export const UISidebar = ({
       <UIButton
         danger
         type="text"
+        htmlType="button"
+        onClick={onSignOut}
+        loading={isSigningOut}
+        disabled={isSigningOut}
         className="ml-3 mt-auto self-start font-medium!"
         iconStart={<LogOut className="mr-2" />}
       >

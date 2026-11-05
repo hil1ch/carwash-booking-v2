@@ -14,11 +14,6 @@ type SignInPageProps = {
 
 export const SignInPage = ({ role }: SignInPageProps) => {
   const isOwner = role === "owner";
-  const registrationForm = isOwner ? (
-    <SignUpOwnerForm />
-  ) : (
-    <SignUpClientForm />
-  );
   const items: TabsProps["items"] = [
     {
       key: "1",
@@ -28,7 +23,7 @@ export const SignInPage = ({ role }: SignInPageProps) => {
           <h2 className="mr-auto text-left font-semibold text-xl my-5">
             Вход для {isOwner ? "владельца автомойки" : "клиента"}
           </h2>
-          <SignInForm />
+          <SignInForm role={role} />
         </>
       ),
     },
@@ -40,7 +35,11 @@ export const SignInPage = ({ role }: SignInPageProps) => {
           <h2 className="mr-auto text-left font-semibold text-xl my-5">
             Регистрация {isOwner ? "владельца автомойки" : "клиента"}
           </h2>
-          {registrationForm}
+          {isOwner ? (
+            <SignUpOwnerForm />
+          ) : (
+            <SignUpClientForm />
+          )}
         </>
       ),
     },

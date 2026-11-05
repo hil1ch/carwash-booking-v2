@@ -20,6 +20,7 @@ import { OwnerCarwashesPage } from "../pages/owner-carwashes";
 import { NotFoundPage } from "../pages/not-found";
 import { OwnerBookingsPage } from "../pages/bookings";
 import { OwnerReviewsPage } from "../pages/owner-reviews";
+import { RequireSession } from "./guards/RequireSession";
 
 export const routes = createBrowserRouter([
   {
@@ -65,48 +66,60 @@ export const routes = createBrowserRouter([
   },
   {
     element: (
-      <OwnerLayout>
-        <Outlet />
-      </OwnerLayout>
+      <RequireSession role="owner" />
     ),
     children: [
       {
-        path: ROUTER_PATHS.DASHBOARD,
-        element: <DashboardPage />,
-      },
-      {
-        path: ROUTER_PATHS.OWNER_CARWASH,
-        element: <OwnerCarwashesPage />,
-      },
-      {
-        path: ROUTER_PATHS.BOOKINGS,
-        element: <OwnerBookingsPage />,
-      },
-      {
-        path: ROUTER_PATHS.OWNER_REVIEWS,
-        element: <OwnerReviewsPage />,
+        element: (
+          <OwnerLayout>
+            <Outlet />
+          </OwnerLayout>
+        ),
+        children: [
+          {
+            path: ROUTER_PATHS.DASHBOARD,
+            element: <DashboardPage />,
+          },
+          {
+            path: ROUTER_PATHS.OWNER_CARWASH,
+            element: <OwnerCarwashesPage />,
+          },
+          {
+            path: ROUTER_PATHS.BOOKINGS,
+            element: <OwnerBookingsPage />,
+          },
+          {
+            path: ROUTER_PATHS.OWNER_REVIEWS,
+            element: <OwnerReviewsPage />,
+          },
+        ],
       },
     ],
   },
 
   {
-    element: (
-      <AccountLayout>
-        <Outlet />
-      </AccountLayout>
-    ),
+    element: <RequireSession role="user" />,
     children: [
       {
-        path: ROUTER_PATHS.USER,
-        element: <UserOrdersPage />,
-      },
-      {
-        path: ROUTER_PATHS.FAVORITE,
-        element: <FavoritePage />,
-      },
-      {
-        path: ROUTER_PATHS.USER_REVIEWS,
-        element: <ReviewsPage />,
+        element: (
+          <AccountLayout>
+            <Outlet />
+          </AccountLayout>
+        ),
+        children: [
+          {
+            path: ROUTER_PATHS.USER,
+            element: <UserOrdersPage />,
+          },
+          {
+            path: ROUTER_PATHS.FAVORITE,
+            element: <FavoritePage />,
+          },
+          {
+            path: ROUTER_PATHS.USER_REVIEWS,
+            element: <ReviewsPage />,
+          },
+        ],
       },
     ],
   },

@@ -2,6 +2,8 @@ import { UISidebar } from "../../../shared/ui/UISidebar";
 import { NavLink } from "react-router";
 import { ROUTER_PATHS } from "../../../shared/constants";
 import { Star, ShowerHead, Timer, Table, LayoutDashboard } from "lucide-react";
+import { useCurrentSession } from "../../../entities/session";
+import { useSignOut } from "../../../features/sign-out";
 
 const ownerSidebarLinks = [
   {
@@ -32,6 +34,8 @@ const ownerSidebarLinks = [
 ] as const;
 
 export const OwnerSidebar = () => {
+  const { data: session } = useCurrentSession();
+  const signOutMutation = useSignOut("owner");
   const sidebarLinkClassName = ({ isActive }: { isActive: boolean }) =>
     `rounded-md px-3 py-3 transition-colors text-left font-medium flex items-center gap-4 ${
       isActive
@@ -40,7 +44,12 @@ export const OwnerSidebar = () => {
     }`;
 
   return (
-    <UISidebar>
+    <UISidebar
+      name={session?.name ?? ""}
+      email={session?.email ?? ""}
+      onSignOut={() => signOutMutation.mutate()}
+      isSigningOut={signOutMutation.isPending}
+    >
       {ownerSidebarLinks.map(({ label, to, icon }) => (
         <NavLink key={to} to={to} className={sidebarLinkClassName}>
           {icon}
