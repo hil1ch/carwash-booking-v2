@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCurrentSession } from "../api/sessionApi";
+import { getCurrentSession } from "../api/mockSessionApi";
 
 export const SESSION_QUERY_KEY = ["session", "current"] as const;
 

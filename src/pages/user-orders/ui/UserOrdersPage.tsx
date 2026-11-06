@@ -1,29 +1,10 @@
-import { CarWash } from "../../../entities/carwash";
+import { CarWash } from "../../../entities/carwash/ui/CarWash";
 import { UITab } from "../../../shared/ui/UITab";
-import type { TabsProps } from "antd";
 
-const items: TabsProps["items"] = [
-  {
-    key: "all",
-    label: "Все",
-    // children: (
-
-    // ),
-  },
-  {
-    key: "past",
-    label: "Прошедшие",
-    // children: (
-
-    // ),
-  },
-  {
-    key: "future",
-    label: "Предстоящие",
-    // children: (
-
-    // ),
-  },
+const items = [
+  { key: "all", label: "Все" },
+  { key: "past", label: "Прошедшие" },
+  { key: "future", label: "Предстоящие" },
 ];
 
 export const UserOrdersPage = () => {
