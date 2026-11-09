@@ -22,9 +22,9 @@ export const UISidebar = ({
     <aside className="sticky top-(--header-height) flex h-full flex-col overflow-y-auto border-r border-gray-200 bg-white py-5 px-4">
       <div className="flex gap-3 items-center">
         <CircleUser size={44} strokeWidth={1.25} aria-hidden="true" />
-        <div className="flex flex-col items-start">
-          <span className="font-semibold">{name}</span>
-          <span className="text-sm text-gray-400">{email}</span>
+        <div className="flex min-w-0 flex-1 flex-col items-start text-left">
+          <span className="w-full truncate font-semibold">{name}</span>
+          <span className="w-full truncate text-sm text-gray-400">{email}</span>
         </div>
       </div>
       <nav
