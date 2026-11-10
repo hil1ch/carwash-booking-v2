@@ -5,6 +5,7 @@ import { ServiceCard } from "../../../entities/service";
 import { Carousel } from "antd";
 import { UIButton } from "../../../shared/ui/UIButton";
 import { ChevronLeft } from "lucide-react";
+import { ROUTER_PATHS } from "../../../shared/constants";
 
 export const CarwashPage = () => {
   return (
@@ -12,7 +13,7 @@ export const CarwashPage = () => {
       <div className="flex justify-start shrink-0">
         <UIButton
           isLink
-          href=""
+          href={ROUTER_PATHS.CARWASHES}
           className="p-0!"
           type="link"
           iconStart={<ChevronLeft size={20} />}

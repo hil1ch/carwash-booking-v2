@@ -1,37 +1,59 @@
-// import type { Carwash } from "../model/types";
-import carwashImg from "../assets/carwash-example.webp";
 import { Heart, Star, MapPinHouse } from "lucide-react";
 import { UIButton } from "../../../shared/ui/UIButton";
-import { UITag } from "../../../shared/ui/UITag";
+// import { UITag } from "../../../shared/ui/UITag";
 
-export const CarWash = () => {
+interface ICarwashItemProps {
+  name: string;
+  // tag?: "Предстоящая" | "Прошедшая";
+  image: string;
+  countReviews: string;
+  score: number;
+  address: string;
+  price: number;
+  isFavorite: boolean;
+  href?: string;
+}
+
+export const CarWash = ({
+  name,
+  image,
+  countReviews,
+  score,
+  address,
+  price,
+  isFavorite,
+  href,
+}: ICarwashItemProps) => {
   return (
     <div className="border border-blue-100 p-2 rounded-xl bg-white">
       <div className="flex items-start gap-5">
         <img
           alt="Изображение автомойки"
-          src={carwashImg}
+          src={image}
           className="rounded-lg max-w-50 h-auto"
         />
         <div className="flex flex-col gap-2 items-start w-full">
           <div className="flex justify-between items-center w-full">
-            <h4 className="text-lg font-semibold">Aqua Car</h4>
-            <UITag variant="outlined" color="green">
+            <h4 className="text-lg font-semibold">{name}</h4>
+            {/* <UITag variant="outlined" color="green">
               Предстоящая
-            </UITag>
+            </UITag> */}
             <UIButton type="text" shape="round">
-              <Heart fill="red" color="red" />
+              <Heart
+                fill={isFavorite ? "red" : "white"}
+                color={isFavorite ? "red" : "currentColor"}
+              />
             </UIButton>
           </div>
-          <div className="text-xs text-gray-400 font-semibold flex flex-col gap-2">
+          <div className="text-sm text-gray-400 flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <Star size={20} color="orange" fill="orange" />
-              <span>4.8</span>
-              <span>(134 отзыва)</span>
+              <span>{score}</span>
+              <span>({countReviews})</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPinHouse size={20} />
-              <span>ул. Молодежная 25</span>
+              <span>{address}</span>
             </div>
           </div>
           {/* <ul className="flex items-center gap-2 text-xs text-blue-500 font-semibold">
@@ -41,12 +63,14 @@ export const CarWash = () => {
           </ul> */}
           <div className="flex items-end justify-between w-full">
             <span className="text-sm">
-              от <strong>600 Р</strong>
+              от <strong>{price} ₽</strong>
             </span>
             {/* <span className="text-sm ml-auto ">12.10.2026</span> */}
-            <UIButton isLink href="">
-              Выбрать
-            </UIButton>
+            {href && (
+              <UIButton isLink href={href}>
+                Выбрать
+              </UIButton>
+            )}
           </div>
         </div>
       </div>
