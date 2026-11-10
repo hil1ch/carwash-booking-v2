@@ -9,13 +9,18 @@ import { BookingsTable } from "../../../entities/booking";
 import type { Booking, BookingStatus } from "../../../entities/booking";
 import { INITIAL_BOOKINGS } from "../../../entities/booking/model/mockBookings";
 import { ROUTER_PATHS } from "../../../shared/constants/routes";
+import { useCurrentSession } from "../../../entities/session";
 
 const PERIOD_OPTIONS = ["Сегодня", "7 дней", "Месяц"] as const;
 type Period = (typeof PERIOD_OPTIONS)[number];
 
 export const DashboardPage = () => {
+  const { data: session } = useCurrentSession();
   const [bookings, setBookings] = useState<Booking[]>(INITIAL_BOOKINGS);
-  const recentBookings = [...bookings]
+  const ownerBookings = bookings.filter(
+    (booking) => booking.ownerId === session?.ownerId,
+  );
+  const recentBookings = [...ownerBookings]
     .sort((first, second) => Date.parse(second.date) - Date.parse(first.date))
     .slice(0, 5);
 

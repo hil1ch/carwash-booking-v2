@@ -1,9 +1,10 @@
 import loginImg from "../assets/washnow_login_car.webp";
 
 import type { TabsProps } from "antd";
+import { Alert } from "antd";
 
 import { SignInForm } from "../../../features/sign-in";
-import { SignUpClientForm, SignUpOwnerForm } from "../../../features/sign-up";
+import { DEMO_ACCOUNT_CREDENTIALS } from "../../../entities/session";
 import { UITab } from "../../../shared/ui/UITab";
 
 import styles from "./SignInPage.module.css";
@@ -14,6 +15,9 @@ type SignInPageProps = {
 
 export const SignInPage = ({ role }: SignInPageProps) => {
   const isOwner = role === "owner";
+  const credentials = isOwner
+    ? DEMO_ACCOUNT_CREDENTIALS.owner
+    : DEMO_ACCOUNT_CREDENTIALS.client;
   const items: TabsProps["items"] = [
     {
       key: "1",
@@ -33,13 +37,24 @@ export const SignInPage = ({ role }: SignInPageProps) => {
       children: (
         <>
           <h2 className="mr-auto text-left font-semibold text-xl my-5">
-            Регистрация {isOwner ? "владельца автомойки" : "клиента"}
+            Аккаунт {isOwner ? "владельца автомойки" : "клиента"}
           </h2>
-          {isOwner ? (
-            <SignUpOwnerForm />
-          ) : (
-            <SignUpClientForm />
-          )}
+          <Alert
+            type="info"
+            showIcon
+            title="Регистрация отключена в демо-режиме"
+            description={
+              <div className="flex flex-col gap-1">
+                <span>Для входа используйте готовый аккаунт:</span>
+                <span>Email: {credentials.email}</span>
+                <span>Пароль: {credentials.password}</span>
+                <span className="mt-2">
+                  Пароль не сохраняется в localStorage. Там хранится только
+                  идентификатор активного демо-пользователя.
+                </span>
+              </div>
+            }
+          />
         </>
       ),
     },

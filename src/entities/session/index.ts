@@ -1,17 +1,12 @@
 export type {
-  AuthSession,
-  ClientRegistration,
-  OwnerRegistration,
-  RegistrationData,
   Session,
   SignInCredentials,
   UserRole,
 } from "./model/types";
 export {
-  clearAccessToken,
+  DEMO_ACCOUNT_CREDENTIALS,
   getCurrentSession,
   signIn,
   signOut,
-  signUp,
-} from "./api/sessionApi";
+} from "./api/mockSessionApi";
 export { SESSION_QUERY_KEY, useCurrentSession } from "./model/queries";
