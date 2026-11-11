@@ -3,7 +3,8 @@ import type { Dispatch, SetStateAction } from "react";
 export interface IFilters {
   inStock: boolean;
   priceRange: [number, number];
-  carwashType: string[];
+  washWays: string[];
+  services: string[];
 }
 
 export interface IFiltersProps {

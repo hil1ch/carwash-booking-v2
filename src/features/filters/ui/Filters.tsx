@@ -2,9 +2,10 @@ import { Divider } from "antd";
 import { UIButton } from "../../../shared/ui/UIButton";
 import { UISwitch } from "../../../shared/ui/UISwitch";
 import { PriceRangeFilter } from "./PriceRangeFilter";
-import { WashTypeFilter } from "./WashTypeFilter";
+import { WashWayFilter } from "./WashWayFilter";
 
 import type { IFilters, IFiltersProps } from "../model/types";
+import { ServicesFilter } from "./ServicesFilter";
 
 export const Filters = ({
   setFilters,
@@ -44,9 +45,16 @@ export const Filters = ({
         </div>
       </div>
       <Divider />
-      <WashTypeFilter
-        value={filtersValue.carwashType}
-        onChange={(carwashType) => updateFilters({ carwashType })}
+      <WashWayFilter
+        value={filtersValue.washWays}
+        onChange={(washWays) => updateFilters({ washWays })}
+      />
+      <Divider />
+      <ServicesFilter
+        value={[]}
+        onChange={function (value: string[]): void {
+          throw new Error("Function not implemented.");
+        }}
       />
       <Divider />
       <PriceRangeFilter

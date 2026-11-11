@@ -17,7 +17,8 @@ import type { SortPriceValue } from "../../../features/sort/model/sorting";
 const defaultFilters: IFilters = {
   inStock: false,
   priceRange: [0, 12000],
-  carwashType: [],
+  washWays: [],
+  services: [],
 };
 
 const PAGE_SIZE = 5;
