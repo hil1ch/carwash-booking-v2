@@ -2,7 +2,7 @@ import { CarWash } from "../../../entities/carwash";
 import type { ICarwashDto } from "../../../shared/api/generated";
 
 interface ICarwashesListProps {
-  carwashes: ICarwashDto[];
+  carwashes: ICarwashDto[] | undefined;
 }
 
 const getAverageReviewRating = (reviews: ICarwashDto["reviews"]): number => {
@@ -18,7 +18,7 @@ const getAverageReviewRating = (reviews: ICarwashDto["reviews"]): number => {
 export const CarwashesList = ({ carwashes }: ICarwashesListProps) => {
   return (
     <ul className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto">
-      {carwashes.map((carwash) => (
+      {carwashes?.map((carwash) => (
         <li key={carwash.id}>
           <CarWash
             name={carwash.name}
