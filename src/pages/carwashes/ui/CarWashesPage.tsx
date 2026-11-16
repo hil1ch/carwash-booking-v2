@@ -1,4 +1,4 @@
-import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
+import { useMemo, useState } from "react";
 
 import { Spin } from "antd";
 import { UIButton } from "../../../shared/ui/UIButton";
@@ -6,43 +6,39 @@ import { useCarwashesQuery } from "../../../entities/carwash/model/queries";
 import { Filters } from "../../../features/filters";
 import { Search } from "../../../features/search";
 import { Sort } from "../../../features/sort";
-import type { IFilters } from "../../../features/filters/model/types";
 import { CarwashesList } from "./CarwashesList";
 import { UIPagination } from "../../../shared/ui/UIPagination";
 import { usePagination } from "../../../shared/lib/usePagination";
 import { normalizedSearchValue } from "../../../shared/lib/normalize";
 import getSortingCarwashes from "../../../features/sort/model/sorting";
 import type { SortPriceValue } from "../../../features/sort/model/sorting";
-
-const defaultFilters: IFilters = {
-  inStock: false,
-  priceRange: [0, 12000],
-  washWays: [],
-  services: [],
-};
+import {
+  DEFAULT_FILTERS,
+  useFilters,
+} from "../../../features/filters/model/filters.store";
 
 const PAGE_SIZE = 5;
 
 export const CarWashesPage = () => {
-  const [filters, setFilters] = useState(defaultFilters);
+  const filters = useFilters((state) => state.filters);
+  const filterCarwashes = useFilters((state) => state.filterCarwashes);
   const [searchValue, setSearchValue] = useState("");
   const [sorting, setSorting] = useState<SortPriceValue>(null);
 
   const query = useCarwashesQuery();
 
-  const filteredCarwashes = useMemo(
-    () =>
-      query.data?.filter((carwash) => {
-        const searchableText =
-          `${carwash.name} ${carwash.location.city} ${carwash.location.address}`
-            .replace(/\s+/g, " ")
-            .trim()
-            .toLocaleLowerCase();
+  const filteredCarwashes = useMemo(() => {
+    const searchTerm = normalizedSearchValue(searchValue);
+    const carwashesByFilters = filterCarwashes(query.data ?? []);
 
-        return searchableText.includes(normalizedSearchValue(searchValue));
-      }),
-    [query.data, searchValue],
-  );
+    return carwashesByFilters.filter((carwash) => {
+      const searchableText = normalizedSearchValue(
+        `${carwash.name} ${carwash.location.city} ${carwash.location.address}`,
+      );
+
+      return searchableText.includes(searchTerm);
+    });
+  }, [query.data, filterCarwashes, filters, searchValue]);
 
   const sortedCarwashes = useMemo(() => {
     return getSortingCarwashes(filteredCarwashes ?? [], sorting);
@@ -53,11 +49,6 @@ export const CarWashesPage = () => {
 
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
-    resetPage();
-  };
-
-  const updateFilters: Dispatch<SetStateAction<IFilters>> = (nextFilters) => {
-    setFilters(nextFilters);
     resetPage();
   };
 
@@ -78,9 +69,9 @@ export const CarWashesPage = () => {
       </div>
       <div className="grid min-h-0 flex-1 grid-cols-[1fr_3fr] items-stretch gap-6">
         <Filters
-          setFilters={updateFilters}
           filtersValue={filters}
-          defaultFilters={defaultFilters}
+          defaultFilters={DEFAULT_FILTERS}
+          onFiltersChange={resetPage}
         />
         <div className="flex min-h-0 flex-col">
           {query.isPending && <Spin size="large" />}
