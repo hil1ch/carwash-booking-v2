@@ -4,29 +4,23 @@ import { UIButton } from "../../../shared/ui/UIButton";
 import { PriceRangeFilter } from "./PriceRangeFilter";
 // import { WashWayFilter } from "./WashWayFilter";
 
-import type { IFiltersProps } from "../model/types";
+import type { FiltersProps, FiltersState } from "../model/types";
 import { CategoriesFilter } from "./CategoriesFilter";
+import { DEFAULT_FILTERS } from "../model/defaults";
 import { useFilters } from "../model/filters.store";
 
-export const Filters = ({
-  filtersValue,
-  defaultFilters,
-  onFiltersChange,
-}: IFiltersProps) => {
+export const Filters = ({ onFiltersChange }: FiltersProps) => {
+  const filters = useFilters((state) => state.filters);
   const resetFilters = useFilters((state) => state.resetFilters);
   const updateFilters = useFilters((state) => state.updateFilters);
 
-  const handleCategoryChange = (
-    categories: IFiltersProps["filtersValue"]["categories"],
-  ) => {
-    updateFilters({ categories });
+  const handleFiltersChange = (changes: Partial<FiltersState>) => {
+    updateFilters(changes);
     onFiltersChange();
   };
 
-  const handlePriceChange = (
-    priceRange: IFiltersProps["filtersValue"]["priceRange"],
-  ) => {
-    updateFilters({ priceRange });
+  const handleReset = () => {
+    resetFilters();
     onFiltersChange();
   };
 
@@ -38,7 +32,7 @@ export const Filters = ({
           type="text"
           variant="text"
           color="primary"
-          onClick={resetFilters}
+          onClick={handleReset}
         >
           Сбросить
         </UIButton>
@@ -61,14 +55,14 @@ export const Filters = ({
       /> */}
       <Divider />
       <CategoriesFilter
-        value={filtersValue.categories}
-        onChange={handleCategoryChange}
+        value={filters.categories}
+        onChange={(categories) => handleFiltersChange({ categories })}
       />
       <Divider />
       <PriceRangeFilter
-        value={filtersValue.priceRange}
-        defaultValue={defaultFilters.priceRange}
-        onChange={handlePriceChange}
+        value={filters.priceRange}
+        defaultValue={DEFAULT_FILTERS.priceRange}
+        onChange={(priceRange) => handleFiltersChange({ priceRange })}
       />
     </div>
   );

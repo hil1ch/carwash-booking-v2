@@ -12,16 +12,13 @@ import { usePagination } from "../../../shared/lib/usePagination";
 import { normalizedSearchValue } from "../../../shared/lib/normalize";
 import getSortingCarwashes from "../../../features/sort/model/sorting";
 import type { SortPriceValue } from "../../../features/sort/model/sorting";
-import {
-  DEFAULT_FILTERS,
-  useFilters,
-} from "../../../features/filters/model/filters.store";
+import { useFilters } from "../../../features/filters/model/filters.store";
+import { filterCarwashes } from "../../../features/filters/model/filterCarwashes";
 
 const PAGE_SIZE = 5;
 
 export const CarWashesPage = () => {
   const filters = useFilters((state) => state.filters);
-  const filterCarwashes = useFilters((state) => state.filterCarwashes);
   const [searchValue, setSearchValue] = useState("");
   const [sorting, setSorting] = useState<SortPriceValue>(null);
 
@@ -29,7 +26,7 @@ export const CarWashesPage = () => {
 
   const filteredCarwashes = useMemo(() => {
     const searchTerm = normalizedSearchValue(searchValue);
-    const carwashesByFilters = filterCarwashes(query.data ?? []);
+    const carwashesByFilters = filterCarwashes(query.data ?? [], filters);
 
     return carwashesByFilters.filter((carwash) => {
       const searchableText = normalizedSearchValue(
@@ -38,7 +35,7 @@ export const CarWashesPage = () => {
 
       return searchableText.includes(searchTerm);
     });
-  }, [query.data, filterCarwashes, filters, searchValue]);
+  }, [query.data, filters, searchValue]);
 
   const sortedCarwashes = useMemo(() => {
     return getSortingCarwashes(filteredCarwashes ?? [], sorting);
@@ -69,8 +66,6 @@ export const CarWashesPage = () => {
       </div>
       <div className="grid min-h-0 flex-1 grid-cols-[1fr_3fr] items-stretch gap-6">
         <Filters
-          filtersValue={filters}
-          defaultFilters={DEFAULT_FILTERS}
           onFiltersChange={resetPage}
         />
         <div className="flex min-h-0 flex-col">

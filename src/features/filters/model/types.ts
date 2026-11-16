@@ -1,16 +1,16 @@
 // import type { Dispatch, SetStateAction } from "react";
 import type { ServiceCategory } from "../../../entities/service";
 
-export interface IFilters {
+export type PriceRange = [number, number];
+
+export interface FiltersState {
   // inStock: boolean;
-  priceRange: [number, number];
+  priceRange: PriceRange;
   // washWays: string[];
   categories: ServiceCategory[];
 }
 
-export interface IFiltersProps {
+export interface FiltersProps {
   // setFilters: Dispatch<SetStateAction<IFilters>>;
-  filtersValue: IFilters;
-  defaultFilters: IFilters;
   onFiltersChange: () => void;
 }

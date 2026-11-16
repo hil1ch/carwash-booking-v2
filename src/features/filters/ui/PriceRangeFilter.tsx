@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { Slider } from "antd";
 import { UIInputNumber } from "../../../shared/ui/UIInputNumber";
 
-import type { IFilters } from "../model/types";
+import type { PriceRange } from "../model/types";
 
-type PriceRange = IFilters["priceRange"];
 type PriceInputValue = number | string | null;
 
 interface IPriceRangeFilterProps {
