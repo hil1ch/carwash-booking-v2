@@ -14,6 +14,7 @@ import getSortingCarwashes from "../../../features/sort/model/sorting";
 import type { SortPriceValue } from "../../../features/sort/model/sorting";
 import { useFilters } from "../../../features/filters/model/filters.store";
 import { filterCarwashes } from "../../../features/filters/model/filterCarwashes";
+import { getPriceRange } from "../../../features/filters/model/filterCarwashes";
 
 const PAGE_SIZE = 5;
 
@@ -23,6 +24,10 @@ export const CarWashesPage = () => {
   const [sorting, setSorting] = useState<SortPriceValue>(null);
 
   const query = useCarwashesQuery();
+
+  const defaultPriceRange = useMemo(() => {
+    return getPriceRange(query.data ?? []);
+  }, [query.data]);
 
   const filteredCarwashes = useMemo(() => {
     const searchTerm = normalizedSearchValue(searchValue);
@@ -66,6 +71,7 @@ export const CarWashesPage = () => {
       </div>
       <div className="grid min-h-0 flex-1 grid-cols-[1fr_3fr] items-stretch gap-6">
         <Filters
+          defaultPriceRange={defaultPriceRange}
           onFiltersChange={resetPage}
         />
         <div className="flex min-h-0 flex-col">

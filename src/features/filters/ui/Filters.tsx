@@ -6,10 +6,12 @@ import { PriceRangeFilter } from "./PriceRangeFilter";
 
 import type { FiltersProps, FiltersState } from "../model/types";
 import { CategoriesFilter } from "./CategoriesFilter";
-import { DEFAULT_FILTERS } from "../model/defaults";
 import { useFilters } from "../model/filters.store";
 
-export const Filters = ({ onFiltersChange }: FiltersProps) => {
+export const Filters = ({
+  defaultPriceRange,
+  onFiltersChange,
+}: FiltersProps) => {
   const filters = useFilters((state) => state.filters);
   const resetFilters = useFilters((state) => state.resetFilters);
   const updateFilters = useFilters((state) => state.updateFilters);
@@ -60,8 +62,8 @@ export const Filters = ({ onFiltersChange }: FiltersProps) => {
       />
       <Divider />
       <PriceRangeFilter
-        value={filters.priceRange}
-        defaultValue={DEFAULT_FILTERS.priceRange}
+        value={filters.priceRange ?? defaultPriceRange}
+        defaultValue={defaultPriceRange}
         onChange={(priceRange) => handleFiltersChange({ priceRange })}
       />
     </div>

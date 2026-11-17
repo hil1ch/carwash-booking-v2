@@ -1,8 +1,10 @@
 import { Heart, Star, MapPinHouse } from "lucide-react";
 import { UIButton } from "../../../shared/ui/UIButton";
+import { useCarwashes } from "../model/carwashes.store";
 // import { UITag } from "../../../shared/ui/UITag";
 
 interface ICarwashItemProps {
+  id: number;
   name: string;
   // tag?: "Предстоящая" | "Прошедшая";
   image: string;
@@ -15,6 +17,7 @@ interface ICarwashItemProps {
 }
 
 export const CarWash = ({
+  id,
   name,
   image,
   countReviews,
@@ -24,6 +27,8 @@ export const CarWash = ({
   isFavorite,
   href,
 }: ICarwashItemProps) => {
+  const toggleFavorite = useCarwashes((state) => state.toggleFavorite);
+
   return (
     <div className="border border-blue-100 p-2 rounded-xl bg-white">
       <div className="flex items-start gap-5">
@@ -38,7 +43,11 @@ export const CarWash = ({
             {/* <UITag variant="outlined" color="green">
               Предстоящая
             </UITag> */}
-            <UIButton type="text" shape="round">
+            <UIButton
+              type="text"
+              shape="round"
+              onClick={() => toggleFavorite(id)}
+            >
               <Heart
                 fill={isFavorite ? "red" : "white"}
                 color={isFavorite ? "red" : "currentColor"}

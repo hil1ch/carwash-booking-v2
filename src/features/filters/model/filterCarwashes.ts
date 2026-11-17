@@ -1,16 +1,15 @@
 import type { Carwash } from "../../../entities/carwash/model/types";
-import { DEFAULT_FILTERS } from "./defaults";
 import type { FiltersState } from "./types";
+import type { PriceRange } from "./types";
 
 export const filterCarwashes = (
   carwashes: Carwash[],
   filters: FiltersState,
 ): Carwash[] => {
-  const [minPrice, maxPrice] = filters.priceRange;
+  const priceRange = filters.priceRange;
+  const [minPrice, maxPrice] = priceRange ?? [0, 0];
   const hasCategoryFilter = filters.categories.length > 0;
-  const hasPriceFilter =
-    minPrice > DEFAULT_FILTERS.priceRange[0] ||
-    maxPrice < DEFAULT_FILTERS.priceRange[1];
+  const hasPriceFilter = priceRange !== null;
 
   if (!hasCategoryFilter && !hasPriceFilter) return carwashes;
 
@@ -22,5 +21,24 @@ export const filterCarwashes = (
         (!hasPriceFilter ||
           (service.price >= minPrice && service.price <= maxPrice)),
     ),
+  );
+};
+
+export const getPriceRange = (carwashes: Carwash[]) => {
+  const prices =
+    carwashes.flatMap((carwash) =>
+      carwash.services
+        .filter((service) => service.isActive)
+        .map((service) => service.price),
+    ) ?? [];
+
+  if (prices.length === 0) return [0, 0] as PriceRange;
+
+  return prices.reduce<PriceRange>(
+    ([minPrice, maxPrice], price) => [
+      Math.min(minPrice, price),
+      Math.max(maxPrice, price),
+    ],
+    [Infinity, -Infinity],
   );
 };

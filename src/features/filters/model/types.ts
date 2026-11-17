@@ -5,12 +5,13 @@ export type PriceRange = [number, number];
 
 export interface FiltersState {
   // inStock: boolean;
-  priceRange: PriceRange;
+  priceRange: PriceRange | null;
   // washWays: string[];
   categories: ServiceCategory[];
 }
 
 export interface FiltersProps {
   // setFilters: Dispatch<SetStateAction<IFilters>>;
+  defaultPriceRange: PriceRange;
   onFiltersChange: () => void;
 }

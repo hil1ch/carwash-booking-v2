@@ -1,19 +1,10 @@
 import { CarWash } from "../../../entities/carwash";
 import type { ICarwashDto } from "../../../shared/api/generated";
+import { getAverageReviewRating } from "../../../shared/lib/getAverageReviewRating";
 
 interface ICarwashesListProps {
   carwashes: ICarwashDto[] | undefined;
 }
-
-const getAverageReviewRating = (reviews: ICarwashDto["reviews"]): number => {
-  if (reviews.length === 0) return 0;
-
-  const totalRating = reviews.reduce(
-    (total, review) => total + review.rating,
-    0,
-  );
-  return totalRating / reviews.length;
-};
 
 export const CarwashesList = ({ carwashes }: ICarwashesListProps) => {
   return (
@@ -21,6 +12,7 @@ export const CarwashesList = ({ carwashes }: ICarwashesListProps) => {
       {carwashes?.map((carwash) => (
         <li key={carwash.id}>
           <CarWash
+            id={carwash.id}
             name={carwash.name}
             image={carwash.image}
             countReviews={String(carwash.reviews.length)}
