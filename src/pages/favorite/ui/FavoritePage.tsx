@@ -7,7 +7,7 @@ export const FavoritePage = () => {
 
   return (
     <>
-      <h1 className="text-xl font-semibold mb-5">Мои записи</h1>
+      <h1 className="text-xl font-semibold mb-5">Избранные автомойки</h1>
       <p className="text-sm text-gray-500 mb-5!">
         Сохраненные автомойки, которые вам понравились
       </p>

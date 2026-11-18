@@ -1,4 +1,4 @@
-import { CarWash } from "../../../entities/carwash/ui/CarWash";
+// import { CarWash } from "../../../entities/carwash/ui/CarWash";
 import { UITab } from "../../../shared/ui/UITab";
 
 const items = [
