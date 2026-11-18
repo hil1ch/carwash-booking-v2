@@ -15,6 +15,7 @@ import type { SortPriceValue } from "../../../features/sort/model/sorting";
 import { useFilters } from "../../../features/filters/model/filters.store";
 import { filterCarwashes } from "../../../features/filters/model/filterCarwashes";
 import { getPriceRange } from "../../../features/filters/model/filterCarwashes";
+import { useCarwashes } from "../../../entities/carwash/model/carwashes.store";
 
 const PAGE_SIZE = 5;
 
@@ -24,14 +25,16 @@ export const CarWashesPage = () => {
   const [sorting, setSorting] = useState<SortPriceValue>(null);
 
   const query = useCarwashesQuery();
+  const carwashes = useCarwashes((state) => state.carwashes);
+  const isInitialized = useCarwashes((state) => state.isInitialized);
 
   const defaultPriceRange = useMemo(() => {
-    return getPriceRange(query.data ?? []);
-  }, [query.data]);
+    return getPriceRange(carwashes);
+  }, [carwashes]);
 
   const filteredCarwashes = useMemo(() => {
     const searchTerm = normalizedSearchValue(searchValue);
-    const carwashesByFilters = filterCarwashes(query.data ?? [], filters);
+    const carwashesByFilters = filterCarwashes(carwashes, filters);
 
     return carwashesByFilters.filter((carwash) => {
       const searchableText = normalizedSearchValue(
@@ -40,7 +43,7 @@ export const CarWashesPage = () => {
 
       return searchableText.includes(searchTerm);
     });
-  }, [query.data, filters, searchValue]);
+  }, [carwashes, filters, searchValue]);
 
   const sortedCarwashes = useMemo(() => {
     return getSortingCarwashes(filteredCarwashes ?? [], sorting);
@@ -75,7 +78,9 @@ export const CarWashesPage = () => {
           onFiltersChange={resetPage}
         />
         <div className="flex min-h-0 flex-col">
-          {query.isPending && <Spin size="large" />}
+          {(query.isPending || (query.isSuccess && !isInitialized)) && (
+            <Spin size="large" />
+          )}
           {query.isError && (
             <div role="alert" className="flex items-center flex-col gap-3">
               <p>Не удалось загрузить автомойки: {query.error.message}</p>
@@ -87,14 +92,14 @@ export const CarWashesPage = () => {
               </UIButton>
             </div>
           )}
-          {query.isSuccess && sortedCarwashes?.length === 0 && (
+          {query.isSuccess && isInitialized && sortedCarwashes.length === 0 && (
             <p>
               {normalizedSearchValue(searchValue)
                 ? "Автомойки по запросу не найдены."
                 : "Автомойки не найдены."}
             </p>
           )}
-          {query.isSuccess && sortedCarwashes && sortedCarwashes.length > 0 && (
+          {query.isSuccess && isInitialized && sortedCarwashes.length > 0 && (
             <>
               <CarwashesList carwashes={paginatedItems} />
               <UIPagination

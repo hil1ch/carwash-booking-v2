@@ -14,7 +14,7 @@ export const RequireSession = ({ role }: { role: UserRole }) => {
   if (isPending) {
     return (
       <div className="flex min-h-dvh items-center justify-center">
-        <Spin size="large" tip="Проверяем сессию..." />
+        <Spin size="large" description="Проверяем сессию..." />
       </div>
     );
   }

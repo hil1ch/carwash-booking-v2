@@ -1,9 +1,14 @@
+import { Spin } from "antd";
 import { CarWash } from "../../../entities/carwash";
 import { useCarwashesQuery } from "../../../entities/carwash/model/queries";
+import { useCarwashes } from "../../../entities/carwash/model/carwashes.store";
 import { getAverageReviewRating } from "../../../shared/lib/getAverageReviewRating";
 
 export const FavoritePage = () => {
-  const carwashes = useCarwashesQuery();
+  const query = useCarwashesQuery();
+  const carwashes = useCarwashes((state) => state.carwashes);
+  const isInitialized = useCarwashes((state) => state.isInitialized);
+  const favoriteCarwashes = carwashes.filter((carwash) => carwash.isFavorite);
 
   return (
     <>
@@ -12,21 +17,36 @@ export const FavoritePage = () => {
         Сохраненные автомойки, которые вам понравились
       </p>
       <ul className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto">
-        {carwashes.data?.map((carwash) => (
-          <li key={carwash.id}>
-            <CarWash
-              id={carwash.id}
-              name={carwash.name}
-              image={carwash.image}
-              countReviews={String(carwash.reviews.length)}
-              score={getAverageReviewRating(carwash.reviews)}
-              address={`${carwash.location.city}, ${carwash.location.address}`}
-              price={carwash.price}
-              isFavorite={carwash.isFavorite}
-              href={`/carwashes/${carwash.id}`}
-            />
+        {(query.isPending || (query.isSuccess && !isInitialized)) && (
+          <li>
+            <Spin size="large" />
           </li>
-        ))}
+        )}
+        {query.isError && (
+          <li role="alert">
+            Не удалось загрузить автомойки: {query.error.message}
+          </li>
+        )}
+        {query.isSuccess && isInitialized && favoriteCarwashes.length === 0 && (
+          <li>В избранном пока нет автомоек.</li>
+        )}
+        {query.isSuccess &&
+          isInitialized &&
+          favoriteCarwashes.map((carwash) => (
+            <li key={carwash.id}>
+              <CarWash
+                id={carwash.id}
+                name={carwash.name}
+                image={carwash.image}
+                countReviews={String(carwash.reviews.length)}
+                score={getAverageReviewRating(carwash.reviews)}
+                address={`${carwash.location.city}, ${carwash.location.address}`}
+                price={carwash.price}
+                isFavorite={carwash.isFavorite}
+                href={`/carwashes/${carwash.id}`}
+              />
+            </li>
+          ))}
       </ul>
     </>
   );
