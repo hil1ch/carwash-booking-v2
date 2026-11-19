@@ -1,11 +1,9 @@
-import type { ICarwashDto } from "../../../shared/api/generated";
-
 export type SortPriceValue = null | "upscale" | "descale";
 
-const getSortingCarwashes = (
-  carwashes: ICarwashDto[],
+const getSortingCarwashes = <T extends { price: number }>(
+  carwashes: T[],
   price: SortPriceValue,
-) => {
+): T[] => {
   if (price === null) return [...carwashes];
 
   return [...carwashes].sort((carwashA, carwashB) =>

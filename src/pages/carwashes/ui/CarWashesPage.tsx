@@ -13,8 +13,10 @@ import { normalizedSearchValue } from "../../../shared/lib/normalize";
 import getSortingCarwashes from "../../../features/sort/model/sorting";
 import type { SortPriceValue } from "../../../features/sort/model/sorting";
 import { useFilters } from "../../../features/filters/model/filters.store";
-import { filterCarwashes } from "../../../features/filters/model/filterCarwashes";
-import { getPriceRange } from "../../../features/filters/model/filterCarwashes";
+import {
+  filterCarwashes,
+  getPriceRange,
+} from "../../../features/filters/model/filterCarwashes";
 import { useCarwashes } from "../../../entities/carwash/model/carwashes.store";
 
 const PAGE_SIZE = 5;
@@ -46,7 +48,7 @@ export const CarWashesPage = () => {
   }, [carwashes, filters, searchValue]);
 
   const sortedCarwashes = useMemo(() => {
-    return getSortingCarwashes(filteredCarwashes ?? [], sorting);
+    return getSortingCarwashes(filteredCarwashes, sorting);
   }, [filteredCarwashes, sorting]);
 
   const { currentPage, setCurrentPage, paginatedItems, resetPage } =

@@ -65,11 +65,6 @@ export const CarWash = ({
               <span>{address}</span>
             </div>
           </div>
-          {/* <ul className="flex items-center gap-2 text-xs text-blue-500 font-semibold">
-            <li className="px-2 py-1 bg-blue-50 rounded-xl">Ручная</li>
-            <li className="px-2 py-1 bg-blue-50 rounded-xl">Автоматическая</li>
-            <li className="px-2 py-1 bg-blue-50 rounded-xl">Химчистка</li>
-          </ul> */}
           <div className="flex items-end justify-between w-full">
             <span className="text-sm">
               от <strong>{price} ₽</strong>

@@ -21,7 +21,9 @@ export const filterCarwashes = (
     carwash.services.some(
       (service) =>
         service.isActive &&
-        (!hasCategoryFilter || filters.categories.includes(service.category)) &&
+          (!hasCategoryFilter ||
+            (service.category !== undefined &&
+              filters.categories.includes(service.category))) &&
         (!hasPriceFilter ||
           (service.price >= minPrice && service.price <= maxPrice)),
     ),

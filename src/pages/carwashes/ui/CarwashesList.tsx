@@ -1,9 +1,9 @@
 import { CarWash } from "../../../entities/carwash";
-import type { ICarwashDto } from "../../../shared/api/generated";
+import type { Carwash } from "../../../entities/carwash/model/types";
 import { getAverageReviewRating } from "../../../shared/lib/getAverageReviewRating";
 
 interface ICarwashesListProps {
-  carwashes: ICarwashDto[] | undefined;
+  carwashes: Carwash[] | undefined;
 }
 
 export const CarwashesList = ({ carwashes }: ICarwashesListProps) => {
