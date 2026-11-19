@@ -2,7 +2,7 @@ import { Divider } from "antd";
 import { UIButton } from "../../../shared/ui/UIButton";
 // import { UISwitch } from "../../../shared/ui/UISwitch";
 import { PriceRangeFilter } from "./PriceRangeFilter";
-// import { WashWayFilter } from "./WashWayFilter";
+import { WashWayFilter } from "./WashWayFilter";
 
 import type { FiltersProps, FiltersState } from "../model/types";
 import { CategoriesFilter } from "./CategoriesFilter";
@@ -50,11 +50,11 @@ export const Filters = ({
           />
         </div>
       </div> */}
-      {/* <Divider /> */}
-      {/* <WashWayFilter
-        value={filtersValue.washWays}
-        onChange={(washWays) => updateFilters({ washWays })}
-      /> */}
+      <Divider />
+      <WashWayFilter
+        value={filters.washWays}
+        onChange={(washWays) => handleFiltersChange({ washWays })}
+      />
       <Divider />
       <CategoriesFilter
         value={filters.categories}

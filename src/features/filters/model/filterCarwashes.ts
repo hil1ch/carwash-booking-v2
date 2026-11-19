@@ -9,11 +9,15 @@ export const filterCarwashes = (
   const priceRange = filters.priceRange;
   const [minPrice, maxPrice] = priceRange ?? [0, 0];
   const hasCategoryFilter = filters.categories.length > 0;
+  const hasWashWayFilter = filters.washWays.length > 0;
   const hasPriceFilter = priceRange !== null;
 
-  if (!hasCategoryFilter && !hasPriceFilter) return carwashes;
+  if (!hasCategoryFilter && !hasWashWayFilter && !hasPriceFilter)
+    return carwashes;
 
   return carwashes.filter((carwash) =>
+    (!hasWashWayFilter ||
+      filters.washWays.some((washWay) => carwash.washWays.includes(washWay))) &&
     carwash.services.some(
       (service) =>
         service.isActive &&

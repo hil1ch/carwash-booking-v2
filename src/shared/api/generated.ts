@@ -39,6 +39,8 @@ export type CarwashBreak = {
   end: string;
 };
 
+export type WashWay = "manual" | "automatic" | "self";
+
 export type CarwashReview = {
   id: string;
   name?: string;
@@ -57,6 +59,7 @@ export type ICarwashDto = {
   description: string;
   price: number;
   image: string[];
+  washWays: WashWay[];
   isFavorite: boolean;
   services: Service[];
   location: CarwashLocation;
@@ -76,6 +79,7 @@ export type ICreateCarwashDto = {
   description: string;
   price: number;
   image: string[];
+  washWays: WashWay[];
   location: CarwashLocation;
   phone: string;
   email: string;
@@ -90,6 +94,7 @@ export type IUpdateCarwashDto = {
   description: string;
   price: number;
   image: string[];
+  washWays: WashWay[];
   location: CarwashLocation;
   phone: string;
   email: string;

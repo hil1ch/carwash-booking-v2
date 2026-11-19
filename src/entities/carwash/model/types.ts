@@ -22,6 +22,8 @@ export type CarwashBreak = {
   end: string;
 };
 
+export type WashWay = "manual" | "automatic" | "self";
+
 export type Carwash = {
   id: number;
   ownerId: number;
@@ -29,6 +31,7 @@ export type Carwash = {
   description: string;
   price: number;
   image: string[];
+  washWays: WashWay[];
   isFavorite: boolean;
   services: Service[];
   location: CarwashLocation;
@@ -48,6 +51,7 @@ export type CreateCarwashData = {
   description: string;
   price: number;
   image: string[];
+  washWays: WashWay[];
   location: CarwashLocation;
   phone: string;
   email: string;
@@ -62,6 +66,7 @@ export type UpdateCarwashData = {
   description: string;
   price: number;
   image: string[];
+  washWays: WashWay[];
   location: CarwashLocation;
   phone: string;
   email: string;

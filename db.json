@@ -30,6 +30,7 @@
       "description": "Ручная мойка с бережной сушкой и зоной ожидания для клиентов.",
       "price": 600,
       "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
+      "washWays": ["manual", "automatic"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -76,6 +77,7 @@
       "description": "Автомойка с отдельными постами для комплексного ухода за автомобилем.",
       "price": 700,
       "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
+      "washWays": ["manual", "automatic", "self"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -113,6 +115,7 @@
       "description": "Круглосуточные посты и предварительная запись на детейлинг-услуги.",
       "price": 500,
       "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
+      "washWays": ["automatic", "self"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -159,6 +162,7 @@
       "description": "Семейная автомойка с комнатой ожидания и детским уголком.",
       "price": 650,
       "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
+      "washWays": ["manual", "self"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -196,6 +200,7 @@
       "description": "Детейлинг-центр с защитными покрытиями и услугами для салона.",
       "price": 900,
       "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
+      "washWays": ["manual"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
