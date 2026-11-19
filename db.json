@@ -29,7 +29,7 @@
       "name": "Аква Парк на Малышева",
       "description": "Ручная мойка с бережной сушкой и зоной ожидания для клиентов.",
       "price": 600,
-      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -75,7 +75,7 @@
       "name": "Аква Парк на Восточной",
       "description": "Автомойка с отдельными постами для комплексного ухода за автомобилем.",
       "price": 700,
-      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -112,7 +112,7 @@
       "name": "Чистый Город на Луначарского",
       "description": "Круглосуточные посты и предварительная запись на детейлинг-услуги.",
       "price": 500,
-      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -158,7 +158,7 @@
       "name": "Чистый Город на Щербакова",
       "description": "Семейная автомойка с комнатой ожидания и детским уголком.",
       "price": 650,
-      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",
@@ -195,7 +195,7 @@
       "name": "Блеск Авто на Белинского",
       "description": "Детейлинг-центр с защитными покрытиями и услугами для салона.",
       "price": 900,
-      "image": "/src/entities/carwash/assets/carwash-example.webp",
+      "image": ["/src/entities/carwash/assets/carwash-example.webp", "/src/entities/carwash/assets/carwash-example2.webp"],
       "isFavorite": false,
       "location": {
         "city": "Екатеринбург",

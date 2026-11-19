@@ -56,7 +56,7 @@ export type ICarwashDto = {
   name: string;
   description: string;
   price: number;
-  image: string;
+  image: string[];
   isFavorite: boolean;
   services: Service[];
   location: CarwashLocation;
@@ -75,7 +75,7 @@ export type ICreateCarwashDto = {
   name: string;
   description: string;
   price: number;
-  image: string;
+  image: string[];
   location: CarwashLocation;
   phone: string;
   email: string;
@@ -89,7 +89,7 @@ export type IUpdateCarwashDto = {
   name: string;
   description: string;
   price: number;
-  image: string;
+  image: string[];
   location: CarwashLocation;
   phone: string;
   email: string;

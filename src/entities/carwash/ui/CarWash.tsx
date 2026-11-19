@@ -7,7 +7,7 @@ interface ICarwashItemProps {
   id: number;
   name: string;
   // tag?: "Предстоящая" | "Прошедшая";
-  image: string;
+  image: string[];
   countReviews: string;
   score: number;
   address: string;
@@ -34,7 +34,7 @@ export const CarWash = ({
       <div className="flex items-start gap-5">
         <img
           alt="Изображение автомойки"
-          src={image}
+          src={image[0]}
           className="rounded-lg max-w-50 h-auto"
         />
         <div className="flex flex-col gap-2 items-start w-full">
