@@ -23,6 +23,7 @@ export const CarwashPage = () => {
   const images = carwashItem?.image ?? [];
   const reviews = carwashItem?.reviews ?? [];
   const washWays = carwashItem?.washWays ?? [];
+  const services = carwashItem?.services ?? [];
 
   return (
     <div className="max-w-6xl w-full h-[calc(100dvh-var(--header-height)-2.5rem)] mx-auto flex flex-col overflow-hidden">
@@ -73,7 +74,7 @@ export const CarwashPage = () => {
                   {
                     "border-blue-500":
                       activeImageIndex === images.indexOf(image),
-                    "border-transparent":
+                    "border-transparent opacity-50":
                       activeImageIndex !== images.indexOf(image),
                   },
                 )}
@@ -115,11 +116,16 @@ export const CarwashPage = () => {
           <div className="mt-10 flex flex-1 min-h-0 flex-col">
             <h5 className="font-semibold mb-5 shrink-0">Выберите услугу</h5>
             <ul className="flex flex-1 min-h-0 flex-col gap-2 overflow-y-auto">
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
+              {services.map((service) => (
+                <ServiceCard
+                  key={service.id}
+                  name={service.name}
+                  description={service.description}
+                  price={service.price}
+                  durationMinutes={service.durationMinutes}
+                  category={service.category}
+                />
+              ))}
             </ul>
           </div>
         </div>

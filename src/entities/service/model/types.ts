@@ -7,11 +7,11 @@ export type ServiceCategory =
   | "engine";
 
 export type Service = {
-  id: number;
+  id?: number;
   name: string;
-  category: ServiceCategory;
+  category?: ServiceCategory;
   description: string;
   price: number;
   durationMinutes: number;
-  isActive: boolean;
+  isActive?: boolean;
 };
