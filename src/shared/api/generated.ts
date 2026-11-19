@@ -39,7 +39,7 @@ export type CarwashBreak = {
   end: string;
 };
 
-export type WashWay = "manual" | "automatic" | "self";
+export type WashWay = "Ручная" | "Автоматическая" | "Самообслуживание";
 
 export type CarwashReview = {
   id: string;

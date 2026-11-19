@@ -22,6 +22,7 @@ export const CarwashPage = () => {
   const carwashItem = carwashQuery.data;
   const images = carwashItem?.image ?? [];
   const reviews = carwashItem?.reviews ?? [];
+  const washWays = carwashItem?.washWays ?? [];
 
   return (
     <div className="max-w-6xl w-full h-[calc(100dvh-var(--header-height)-2.5rem)] mx-auto flex flex-col overflow-hidden">
@@ -104,11 +105,11 @@ export const CarwashPage = () => {
               <span>{carwashItem?.location.address}</span>
             </div>
             <ul className="mt-2 flex items-center gap-2 text-sm text-blue-500 font-semibold">
-              <li className="px-2 py-1 bg-blue-50 rounded-xl">Ручная</li>
-              <li className="px-2 py-1 bg-blue-50 rounded-xl">
-                Автоматическая
-              </li>
-              <li className="px-2 py-1 bg-blue-50 rounded-xl">Химчистка</li>
+              {washWays.map((washWay) => (
+                <li key={washWay} className="px-2 py-1 bg-blue-50 rounded-xl">
+                  {washWay}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="mt-10 flex flex-1 min-h-0 flex-col">

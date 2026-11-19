@@ -2,9 +2,9 @@ import type { ServiceCategory } from "../../../entities/service";
 import type { WashWay } from "../../../entities/carwash/model/types";
 
 export const WASH_WAYS_OPTIONS: { label: string; value: WashWay }[] = [
-  { label: "Ручная", value: "manual" },
-  { label: "Автоматическая", value: "automatic" },
-  { label: "Самообслуживание", value: "self" },
+  { label: "Ручная", value: "Ручная" },
+  { label: "Автоматическая", value: "Автоматическая" },
+  { label: "Самообслуживание", value: "Самообслуживание" },
 ];
 
 export const CATEGORIES_OPTIONS: { label: string; value: ServiceCategory }[] = [
