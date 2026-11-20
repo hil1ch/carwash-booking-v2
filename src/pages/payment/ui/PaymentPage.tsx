@@ -6,10 +6,23 @@ import mirMethod from "../assets/mir.svg";
 import sbpMethod from "../assets/sbp.svg";
 import visaMethod from "../assets/visa.svg";
 import { UIButton } from "../../../shared/ui/UIButton";
+import { parsePositiveId } from "../../../shared/lib/parsePositiveId";
+import { useCarwashQuery } from "../../../entities/carwash/model/queries";
 
 import { LockKeyhole } from "lucide-react";
+import { useParams } from "react-router";
 
 export const PaymentPage = () => {
+  const { carwashId: carwashIdParam, serviceId: serviceIdParam } = useParams();
+  const carwashId = parsePositiveId(carwashIdParam);
+  const serviceId = parsePositiveId(serviceIdParam);
+  const carwashQuery = useCarwashQuery(carwashId);
+  const carwashItem = carwashQuery.data;
+  const serviceItem =
+    serviceId === undefined
+      ? undefined
+      : carwashItem?.services.find((service) => service.id === serviceId);
+
   return (
     <div className="max-w-6xl w-full mx-auto">
       <div className="grid grid-cols-2 text-left gap-10">
@@ -89,12 +102,12 @@ export const PaymentPage = () => {
           <div className="border border-blue-100 py-5 px-4 rounded-xl bg-white w-full">
             <div className="flex flex-col gap-5 text-gray-600 font-medium">
               <div className="flex items-center justify-between">
-                <span>Мойка кузова + салон</span>
-                <span>1 200 Р</span>
+                <span>{serviceItem?.name}</span>
+                <span>{serviceItem?.price} ₽</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Скидка</span>
-                <span>0 Р</span>
+                <span>0 ₽</span>
               </div>
             </div>
             <Divider />

@@ -14,19 +14,14 @@ import { CarwashCarousel } from "./CarwashCarousel";
 import { UIPagination } from "../../../shared/ui/UIPagination";
 import { usePagination } from "../../../shared/lib/usePagination";
 import { PAGINATION_PAGE_SIZE } from "../../../shared/constants/paginationPageSize";
+import { parsePositiveId } from "../../../shared/lib/parsePositiveId";
 
 export const CarwashPage = () => {
   const carouselRef = useRef<CarouselRef>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const { carwashId: carwashIdParam } = useParams();
-  const parsedCarwashId = Number(carwashIdParam);
-  const carwashId =
-    /^\d+$/.test(carwashIdParam ?? "") &&
-    Number.isSafeInteger(parsedCarwashId) &&
-    parsedCarwashId > 0
-      ? parsedCarwashId
-      : undefined;
+  const carwashId = parsePositiveId(carwashIdParam);
   const carwashQuery = useCarwashQuery(carwashId);
   const carwashItem = carwashQuery.data;
 

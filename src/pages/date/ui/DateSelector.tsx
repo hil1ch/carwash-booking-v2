@@ -1,12 +1,6 @@
 import { Radio } from "antd";
 import type { RadioChangeEvent } from "antd";
-
-export interface DateOption {
-  value: string;
-  title: string;
-  day: number;
-  month: string;
-}
+import type { DateOption } from "../model/types";
 
 interface DateSelectorProps {
   dates: DateOption[];
@@ -35,7 +29,7 @@ export const DateSelector = ({ dates, value, onChange }: DateSelectorProps) => {
             value={date.value}
           >
             <div className="flex flex-col items-center whitespace-nowrap font-medium text-base">
-              <span className="">{date.title}</span>
+              <span>{date.title}</span>
               <span className="text-sm">{date.day}</span>
               <span>{date.month}</span>
             </div>

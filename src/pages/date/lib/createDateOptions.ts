@@ -1,7 +1,11 @@
-import type { DateOption } from "../ui/DateSelector";
+import type { DateOption } from "../model/types";
 
 export const createDateOptions = (count: number): DateOption[] => {
   const today = new Date();
+  const weekdayFormatter = new Intl.DateTimeFormat("ru-RU", {
+    weekday: "short",
+  });
+  const monthFormatter = new Intl.DateTimeFormat("ru-RU", { month: "short" });
 
   return Array.from({ length: count }, (_, index) => {
     const date = new Date(today);
@@ -18,16 +22,12 @@ export const createDateOptions = (count: number): DateOption[] => {
       title:
         index === 0
           ? "Сегодня"
-          : new Intl.DateTimeFormat("ru-RU", { weekday: "short" })
+          : weekdayFormatter
               .format(date)
               .replace(/\.$/, "")
-              .replace(/^\p{L}/u, (letter) =>
-                letter.toLocaleUpperCase("ru-RU"),
-              ),
+              .replace(/^\p{L}/u, (letter) => letter.toLocaleUpperCase("ru-RU")),
       day: date.getDate(),
-      month: new Intl.DateTimeFormat("ru-RU", { month: "short" })
-        .format(date)
-        .replace(/\.$/, ""),
+      month: monthFormatter.format(date).replace(/\.$/, ""),
     };
   });
 };
