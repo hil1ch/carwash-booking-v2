@@ -18,8 +18,7 @@ import {
   getPriceRange,
 } from "../../../features/filters/model/filterCarwashes";
 import { useCarwashes } from "../../../entities/carwash/model/carwashes.store";
-
-const PAGE_SIZE = 5;
+import { PAGINATION_PAGE_SIZE } from "../../../shared/constants/paginationPageSize";
 
 export const CarWashesPage = () => {
   const filters = useFilters((state) => state.filters);
@@ -52,7 +51,7 @@ export const CarWashesPage = () => {
   }, [filteredCarwashes, sorting]);
 
   const { currentPage, setCurrentPage, paginatedItems, resetPage } =
-    usePagination(sortedCarwashes, PAGE_SIZE);
+    usePagination(sortedCarwashes, PAGINATION_PAGE_SIZE);
 
   const handleSearchChange = (value: string) => {
     setSearchValue(value);
@@ -108,7 +107,7 @@ export const CarWashesPage = () => {
                 current={currentPage}
                 total={sortedCarwashes.length}
                 onChange={setCurrentPage}
-                pageSize={PAGE_SIZE}
+                pageSize={PAGINATION_PAGE_SIZE}
               />
             </>
           )}

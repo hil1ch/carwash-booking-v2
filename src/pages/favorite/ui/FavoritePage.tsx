@@ -3,12 +3,20 @@ import { CarWash } from "../../../entities/carwash";
 import { useCarwashesQuery } from "../../../entities/carwash/model/queries";
 import { useCarwashes } from "../../../entities/carwash/model/carwashes.store";
 import { getAverageReviewRating } from "../../../shared/lib/getAverageReviewRating";
+import { usePagination } from "../../../shared/lib/usePagination";
+import { UIPagination } from "../../../shared/ui/UIPagination";
+import { PAGINATION_PAGE_SIZE } from "../../../shared/constants/paginationPageSize";
 
 export const FavoritePage = () => {
   const query = useCarwashesQuery();
   const carwashes = useCarwashes((state) => state.carwashes);
   const isInitialized = useCarwashes((state) => state.isInitialized);
   const favoriteCarwashes = carwashes.filter((carwash) => carwash.isFavorite);
+
+  const { currentPage, setCurrentPage, paginatedItems } = usePagination(
+    favoriteCarwashes,
+    PAGINATION_PAGE_SIZE,
+  );
 
   return (
     <>
@@ -32,7 +40,7 @@ export const FavoritePage = () => {
         )}
         {query.isSuccess &&
           isInitialized &&
-          favoriteCarwashes.map((carwash) => (
+          paginatedItems?.map((carwash) => (
             <li key={carwash.id}>
               <CarWash
                 id={carwash.id}
@@ -48,6 +56,12 @@ export const FavoritePage = () => {
             </li>
           ))}
       </ul>
+      <UIPagination
+        current={currentPage}
+        total={favoriteCarwashes.length}
+        onChange={setCurrentPage}
+        pageSize={PAGINATION_PAGE_SIZE}
+      />
     </>
   );
 };

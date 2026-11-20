@@ -11,6 +11,9 @@ import { getAverageReviewRating } from "../../../shared/lib/getAverageReviewRati
 import { WORD_DECLENSIONS } from "../../../shared/constants/wordDeclensions";
 import { getDeclension } from "../../../shared/lib/getDeclension";
 import { CarwashCarousel } from "./CarwashCarousel";
+import { UIPagination } from "../../../shared/ui/UIPagination";
+import { usePagination } from "../../../shared/lib/usePagination";
+import { PAGINATION_PAGE_SIZE } from "../../../shared/constants/paginationPageSize";
 
 export const CarwashPage = () => {
   const carouselRef = useRef<CarouselRef>(null);
@@ -26,6 +29,11 @@ export const CarwashPage = () => {
       : undefined;
   const carwashQuery = useCarwashQuery(carwashId);
   const carwashItem = carwashQuery.data;
+
+  const { currentPage, setCurrentPage, paginatedItems } = usePagination(
+    carwashItem?.services,
+    PAGINATION_PAGE_SIZE,
+  );
 
   return (
     <div className="max-w-6xl w-full h-[calc(100dvh-var(--header-height)-2.5rem)] mx-auto flex flex-col overflow-hidden">
@@ -104,10 +112,10 @@ export const CarwashPage = () => {
                 ))}
               </ul>
             </div>
-            <div className="mt-10 flex flex-1 min-h-0 flex-col">
+            <div className="mt-8 flex flex-1 min-h-0 flex-col">
               <h5 className="font-semibold mb-5 shrink-0">Выберите услугу</h5>
               <ul className="flex flex-1 min-h-0 flex-col gap-2 overflow-y-auto">
-                {carwashItem.services.map((service) => (
+                {paginatedItems?.map((service) => (
                   <ServiceCard
                     key={service.id}
                     carwashId={carwashItem.id}
@@ -115,6 +123,12 @@ export const CarwashPage = () => {
                   />
                 ))}
               </ul>
+              <UIPagination
+                current={currentPage}
+                total={carwashItem.services.length}
+                onChange={setCurrentPage}
+                pageSize={PAGINATION_PAGE_SIZE}
+              />
             </div>
           </div>
         </div>
