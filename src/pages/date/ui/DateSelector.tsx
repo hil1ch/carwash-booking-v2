@@ -34,7 +34,7 @@ export const DateSelector = ({ dates, value, onChange }: DateSelectorProps) => {
             className="flex! items-center p-1! justify-center w-full h-auto! min-h-16 rounded-xl! text-center "
             value={date.value}
           >
-            <div className="flex flex-col items-center whitespace-nowrap font-semibold text-base">
+            <div className="flex flex-col items-center whitespace-nowrap font-medium text-base">
               <span className="">{date.title}</span>
               <span className="text-sm">{date.day}</span>
               <span>{date.month}</span>
