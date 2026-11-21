@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
-import { useParams } from "react-router";
-import { ChevronLeft, MapPinHouse, Star } from "lucide-react";
+import { useLocation, useParams } from "react-router";
+import { MapPinHouse, Star } from "lucide-react";
 import { ServiceCard } from "../../../entities/service";
 import { Spin } from "antd";
 import { UIButton } from "../../../shared/ui/UIButton";
-import { ROUTER_PATHS } from "../../../shared/constants";
 import type { CarouselRef } from "antd";
 import { useCarwashQuery } from "../../../entities/carwash/model/queries";
 import { getAverageReviewRating } from "../../../shared/lib/getAverageReviewRating";
@@ -15,12 +14,15 @@ import { UIPagination } from "../../../shared/ui/UIPagination";
 import { usePagination } from "../../../shared/lib/usePagination";
 import { PAGINATION_PAGE_SIZE } from "../../../shared/constants/paginationPageSize";
 import { parsePositiveId } from "../../../shared/lib/parsePositiveId";
+import { UIBreadcrumb } from "../../../shared/ui/UIBreadcrumb";
+import { createPagesBreadcrumb } from "../../../shared/lib/createPagesBreadcrumb";
 
 export const CarwashPage = () => {
   const carouselRef = useRef<CarouselRef>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const { carwashId: carwashIdParam } = useParams();
+  const { pathname } = useLocation();
   const carwashId = parsePositiveId(carwashIdParam);
   const carwashQuery = useCarwashQuery(carwashId);
   const carwashItem = carwashQuery.data;
@@ -32,17 +34,12 @@ export const CarwashPage = () => {
 
   return (
     <div className="max-w-6xl w-full h-[calc(100dvh-var(--header-height)-2.5rem)] mx-auto flex flex-col overflow-hidden">
-      <div className="flex justify-start shrink-0">
-        <UIButton
-          isLink
-          href={ROUTER_PATHS.CARWASHES}
-          className="p-0!"
-          type="link"
-          iconStart={<ChevronLeft size={20} />}
-        >
-          Назад к списку
-        </UIButton>
-      </div>
+      <UIBreadcrumb
+        items={createPagesBreadcrumb({
+          pathname,
+          carwashName: carwashItem?.name,
+        })}
+      />
       {!carwashId && (
         <p role="alert" className="my-5">
           Некорректный идентификатор автомойки.

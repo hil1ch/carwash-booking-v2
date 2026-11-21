@@ -4,12 +4,14 @@ import { DateSelector } from "./DateSelector";
 import { Radio } from "antd";
 import type { RadioChangeEvent } from "antd";
 import { UIButton } from "../../../shared/ui/UIButton";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { useCarwashQuery } from "../../../entities/carwash/model/queries";
 import { createDateOptions } from "../lib/createDateOptions";
 import { timePeriods } from "../model/timePeriods";
 import { ROUTER_PATHS } from "../../../shared/constants";
 import { parsePositiveId } from "../../../shared/lib/parsePositiveId";
+import { UIBreadcrumb } from "../../../shared/ui/UIBreadcrumb";
+import { createPagesBreadcrumb } from "../../../shared/lib/createPagesBreadcrumb";
 
 export const DatePage = () => {
   const dates = useMemo(() => createDateOptions(5), []);
@@ -17,6 +19,7 @@ export const DatePage = () => {
   const [selectedTime, setSelectedTime] = useState<string>();
 
   const { carwashId: carwashIdParam, serviceId: serviceIdParam } = useParams();
+  const { pathname } = useLocation();
   const carwashId = parsePositiveId(carwashIdParam);
   const serviceId = parsePositiveId(serviceIdParam);
   const carwashQuery = useCarwashQuery(carwashId);
@@ -43,7 +46,14 @@ export const DatePage = () => {
 
   return (
     <div className="max-w-6xl w-full mx-auto">
-      <div className="grid grid-cols-[1fr_3fr] items-start gap-8">
+      <UIBreadcrumb
+        items={createPagesBreadcrumb({
+          pathname,
+          carwashName: carwashItem?.name,
+          serviceName: serviceItem?.name,
+        })}
+      />
+      <div className="grid grid-cols-[1fr_3fr] items-start gap-8 mt-5">
         <div>
           <div className="border border-blue-100 p-2 rounded-xl bg-white text-left">
             <img
